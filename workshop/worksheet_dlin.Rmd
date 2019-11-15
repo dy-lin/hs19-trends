@@ -18,6 +18,7 @@ library(tidyverse)
 library(gganimate)
 # library(fulltext)
 ```
+### Stacked Bar Graph
 
 ### Load the processed data
 ```{r load processed data, include = FALSE}
