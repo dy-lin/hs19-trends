@@ -4,6 +4,7 @@ author: "Emma Garlock"
 date: "11/15/2019"
 output: html_document
 ---
+## Mapping 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, fig.width=12, fig.height=8)
@@ -166,6 +167,11 @@ pl <- ggplot() +
 
 ggplotly(pl,tooltip="text")
 ```
+
+## Bigrams 
+
+```{r}
+
 ```
 
 
