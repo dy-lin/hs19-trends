@@ -55,8 +55,9 @@ world_sf <- world_sf %>%
     world_sp@polygons[[i]]@ID
   }))
 #this step takes a while 
-result <- st_within(point_sf, world_sf, sparse = FALSE)
-
+#result <- st_within(point_sf, world_sf, sparse = FALSE)
+result=read.csv(here("workshop","data","result.csv"))
+result=result[,-1]
 # Calculate the total count of each polygon
 # Store the result as a new column "Count" in world_sf
 world_sf <- world_sf %>%
@@ -87,54 +88,85 @@ st_geometry(world_df) <- NULL
 world_data <- map_data("world")
 
 # Merge world_data and world_df and topicRanks
-world_data2 <- world_data %>%
-  left_join(world_df, by = c("region"))%>%
-  left_join(topicRanks, by=c("region"))
-world_data2=data.frame(lapply(world_data2,as.character),stringsAsFactors=FALSE)
+world_data2=read.csv(here("workshop","data","world_data2.csv"))
+#world_data2 <- world_data %>%
+  #left_join(world_df, by = c("region"))%>%
+ #left_join(topicRanks, by=c("region"))
+#world_data2=data.frame(lapply(world_data2,as.character),stringsAsFactors=FALSE)
 ```
 ```{r}
-world_data2=read.csv(here("workshop","data","world_data2.csv"))
+
 ```
 
 ```{r worldmap}
 pl <- ggplot() + 
-  geom_polygon(data = world_data2, aes(x = long, y = lat, group = group, fill = log(Count),text=Count)) +
+  geom_polygon(data = world_data2, aes(x = long, y = lat, group=group,fill =log(Count),text=Count))+
   #geom_point(data=data,aes(x = long, y = lat),alpha=0.5,size=0.5,colour="grey")+
   coord_fixed(1.3)+
   scale_fill_viridis()+
   theme_void()
 
 ggplotly(pl,tooltip = "text")
+
 ## R Markdown
 ```
+
 ```{r}
-naPoly <- world_data2 %>% filter(is.na(topicDisplay))
+###get only europe
+#world_sf=read.csv(here("workshop","data","world_sf.csv"))
+
+filt_bbox <- sf::st_bbox(c(xmin = -9, 
+                           ymin = 36, 
+                           xmax = 42.5, 
+                           ymax = 70.1), 
+                         crs = st_crs(4326)) %>% 
+  sf::st_as_sfc(.)
+
+
+find_data <- sf::st_within(world_sf, filt_bbox)
+#> although coordinates are longitude/latitude, st_within assumes that they are planar
+europe_sf <- world_sf[which(lengths(find_data) != 0), ]
+
+europe_result <- st_within(point_sf, europe_sf, sparse = FALSE)
+
+# Calculate the total count of each polygon
+# Store the result as a new column "Count" in world_sf
+europe_sf <- europe_sf %>%
+  mutate(Count = apply(europe_result, 2, sum))
+
+# Convert world_sf to a data frame world_df 
+europe_df <- europe_sf
+st_geometry(europe_df) <- NULL
+
+# Get world data frame
+world_data <- map_data("world")
+
+# Merge world_data and world_df
+europe_data <- europe_df %>%
+  left_join(world_data, by = c("region"))
+
+ind <- sf::st_intersects(point_sf, europe_sf)
+points_europe<-  point_sf[which(lengths(ind) != 0), ]
+points_europe <- cbind(points_europe,st_coordinates(points_europe))
+points_europe=points_europe[,-c(6,7)]
+```
+
+```{r}
+head(europe_data)
+colnames(points_europe)
+```
+
+```{r}
 pl <- ggplot() + 
-  geom_polygon(data = world_data2, aes(x = long, y = lat, group = group, fill = topicDisplay,text=text)) +
-  geom_polygon(data=naPoly,aes(x=long,y=lat,group=group),fill="grey",color="lightgrey")+
-  #geom_point(data=data,aes(x = long, y = lat),alpha=0.5,size=0.5,colour="grey")+
+  geom_polygon(data = europe_data, aes(x = long, y = lat, group = group, fill = log(Count),text=paste(region,Count, sep=";"))) +
+  geom_point(data=points_europe,aes(x=X,y=Y,text=str_wrap(affiliation,50)),alpha=0.5,size=0.5,colour="grey")+
   coord_fixed(1.3)+
-  scale_fill_viridis(discrete = T) +
-  theme_void()+
-  theme(legend.position = "none")
+  scale_fill_viridis()+
+  theme_void()
 
-ggplotly(pl,tooltip = "text")
+ggplotly(pl,tooltip="text")
+```
 ```
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
