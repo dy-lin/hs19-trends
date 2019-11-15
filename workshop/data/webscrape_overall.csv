@@ -1,0 +1,186 @@
+db,found,searchTerm,topic
+plos,9554,sanger sequencing,Sequencing
+bmc,48995,sanger sequencing,Sequencing
+crossref,37023,sanger sequencing,Sequencing
+entrez,96509,sanger sequencing,Sequencing
+arxiv,54228,sanger sequencing,Sequencing
+scopus,89260,sanger sequencing,Sequencing
+plos,34911,long read sequencing,Sequencing
+bmc,324406,long read sequencing,Sequencing
+crossref,434845,long read sequencing,Sequencing
+entrez,339648,long read sequencing,Sequencing
+arxiv,145774,long read sequencing,Sequencing
+scopus,39175,long read sequencing,Sequencing
+plos,49618,NGS,Sequencing
+bmc,28280,NGS,Sequencing
+crossref,1244,NGS,Sequencing
+entrez,43460,NGS,Sequencing
+arxiv,2565,NGS,Sequencing
+scopus,24526,NGS,Sequencing
+plos,28389,read alignment,Sequence Alignment
+bmc,137308,read alignment,Sequence Alignment
+crossref,41070,read alignment,Sequence Alignment
+entrez,195781,read alignment,Sequence Alignment
+arxiv,24428,read alignment,Sequence Alignment
+scopus,75708,read alignment,Sequence Alignment
+plos,27960,global alignment,Sequence Alignment
+bmc,116785,global alignment,Sequence Alignment
+crossref,248934,global alignment,Sequence Alignment
+entrez,142923,global alignment,Sequence Alignment
+arxiv,72526,global alignment,Sequence Alignment
+scopus,170804,global alignment,Sequence Alignment
+plos,33203,local sequence alignment,Sequence Alignment
+bmc,84567,local sequence alignment,Sequence Alignment
+crossref,249422,local sequence alignment,Sequence Alignment
+entrez,123750,local sequence alignment,Sequence Alignment
+arxiv,218877,local sequence alignment,Sequence Alignment
+scopus,103038,local sequence alignment,Sequence Alignment
+plos,2016,CNV,Variant Calling
+bmc,13843,CNV,Variant Calling
+crossref,609,CNV,Variant Calling
+entrez,18091,CNV,Variant Calling
+arxiv,22,CNV,Variant Calling
+scopus,21796,CNV,Variant Calling
+plos,18726,SNP,Variant Calling
+bmc,82823,SNP,Variant Calling
+crossref,5058,SNP,Variant Calling
+entrez,140392,SNP,Variant Calling
+arxiv,334,SNP,Variant Calling
+scopus,180284,SNP,Variant Calling
+plos,11390,Tandem Repeat,Variant Calling
+bmc,75356,Tandem Repeat,Variant Calling
+crossref,43940,Tandem Repeat,Variant Calling
+entrez,88959,Tandem Repeat,Variant Calling
+arxiv,8554,Tandem Repeat,Variant Calling
+scopus,108105,Tandem Repeat,Variant Calling
+plos,15254,short read assembly,Assembly
+bmc,89897,short read assembly,Assembly
+crossref,223813,short read assembly,Assembly
+entrez,118624,short read assembly,Assembly
+arxiv,70947,short read assembly,Assembly
+scopus,34433,short read assembly,Assembly
+plos,17535,long read assembly,Assembly
+bmc,113118,long read assembly,Assembly
+crossref,459602,long read assembly,Assembly
+entrez,136543,long read assembly,Assembly
+arxiv,105933,long read assembly,Assembly
+scopus,37537,long read assembly,Assembly
+plos,16992,hybrid assembly,Assembly
+bmc,82763,hybrid assembly,Assembly
+crossref,180391,hybrid assembly,Assembly
+entrez,106454,hybrid assembly,Assembly
+arxiv,31554,hybrid assembly,Assembly
+scopus,405025,hybrid assembly,Assembly
+plos,23455,GenBank,Databases
+bmc,111058,GenBank,Databases
+crossref,474,GenBank,Databases
+entrez,242520,GenBank,Databases
+arxiv,17,GenBank,Databases
+scopus,479052,GenBank,Databases
+plos,4195,EMBL,Databases
+bmc,27468,EMBL,Databases
+crossref,475,EMBL,Databases
+entrez,57219,EMBL,Databases
+arxiv,5,EMBL,Databases
+scopus,25088,EMBL,Databases
+plos,1391,DDBJ,Databases
+bmc,14411,DDBJ,Databases
+crossref,86,DDBJ,Databases
+entrez,21217,DDBJ,Databases
+scopus,5649,DDBJ,Databases
+plos,5897,annotation pipeline,Genome Annotation
+bmc,25115,annotation pipeline,Genome Annotation
+crossref,17005,annotation pipeline,Genome Annotation
+entrez,40827,annotation pipeline,Genome Annotation
+arxiv,10819,annotation pipeline,Genome Annotation
+scopus,18816,annotation pipeline,Genome Annotation
+plos,28204,functional genome annotation,Genome Annotation
+bmc,66459,functional genome annotation,Genome Annotation
+crossref,345027,functional genome annotation,Genome Annotation
+entrez,126704,functional genome annotation,Genome Annotation
+arxiv,319958,functional genome annotation,Genome Annotation
+scopus,102258,functional genome annotation,Genome Annotation
+plos,83609,gene prediction,Genome Annotation
+bmc,209385,gene prediction,Genome Annotation
+crossref,478470,gene prediction,Genome Annotation
+entrez,334465,gene prediction,Genome Annotation
+arxiv,143869,gene prediction,Genome Annotation
+scopus,593414,gene prediction,Genome Annotation
+plos,36820,transcript quantification,Gene Expression
+bmc,59641,transcript quantification,Gene Expression
+crossref,45910,transcript quantification,Gene Expression
+entrez,111724,transcript quantification,Gene Expression
+arxiv,4872,transcript quantification,Gene Expression
+scopus,56983,transcript quantification,Gene Expression
+plos,116857,differential expression,Gene Expression
+bmc,482786,differential expression,Gene Expression
+crossref,513644,differential expression,Gene Expression
+entrez,762575,differential expression,Gene Expression
+arxiv,152152,differential expression,Gene Expression
+scopus,1582318,differential expression,Gene Expression
+plos,130825,gene expression,Gene Expression
+bmc,895232,gene expression,Gene Expression
+crossref,630072,gene expression,Gene Expression
+entrez,1542979,gene expression,Gene Expression
+arxiv,71596,gene expression,Gene Expression
+scopus,4366318,gene expression,Gene Expression
+plos,31296,phylogenetics,Phylogenetics
+bmc,25684,phylogenetics,Phylogenetics
+crossref,7844,phylogenetics,Phylogenetics
+entrez,25851,phylogenetics,Phylogenetics
+arxiv,1095,phylogenetics,Phylogenetics
+scopus,200650,phylogenetics,Phylogenetics
+plos,41457,evolutionary genetics,Phylogenetics
+bmc,189644,evolutionary genetics,Phylogenetics
+crossref,325505,evolutionary genetics,Phylogenetics
+entrez,240720,evolutionary genetics,Phylogenetics
+arxiv,24531,evolutionary genetics,Phylogenetics
+scopus,675397,evolutionary genetics,Phylogenetics
+plos,52878,evolution genetics,Phylogenetics
+bmc,243313,evolution genetics,Phylogenetics
+crossref,505180,evolution genetics,Phylogenetics
+entrez,353410,evolution genetics,Phylogenetics
+arxiv,104938,evolution genetics,Phylogenetics
+scopus,1141311,evolution genetics,Phylogenetics
+plos,43150,secondary structure prediction,Structural Prediction
+bmc,147622,secondary structure prediction,Structural Prediction
+crossref,897949,secondary structure prediction,Structural Prediction
+entrez,149752,secondary structure prediction,Structural Prediction
+arxiv,405024,secondary structure prediction,Structural Prediction
+scopus,187112,secondary structure prediction,Structural Prediction
+plos,5990,tertiary structure prediction,Structural Prediction
+bmc,25945,tertiary structure prediction,Structural Prediction
+crossref,828190,tertiary structure prediction,Structural Prediction
+entrez,35886,tertiary structure prediction,Structural Prediction
+arxiv,367219,tertiary structure prediction,Structural Prediction
+scopus,56530,tertiary structure prediction,Structural Prediction
+plos,103112,structural prediction,Structural Prediction
+bmc,263670,structural prediction,Structural Prediction
+crossref,419091,structural prediction,Structural Prediction
+entrez,237258,structural prediction,Structural Prediction
+arxiv,366952,structural prediction,Structural Prediction
+scopus,842272,structural prediction,Structural Prediction
+plos,6927,epigenetics bioinformatics,Epigenetics
+bmc,9897,epigenetics bioinformatics,Epigenetics
+crossref,29278,epigenetics bioinformatics,Epigenetics
+entrez,20048,epigenetics bioinformatics,Epigenetics
+arxiv,1345,epigenetics bioinformatics,Epigenetics
+scopus,29220,epigenetics bioinformatics,Epigenetics
+plos,4537,metagenomics,Metagenomics
+bmc,12290,metagenomics,Metagenomics
+crossref,1484,metagenomics,Metagenomics
+entrez,18801,metagenomics,Metagenomics
+arxiv,100,metagenomics,Metagenomics
+scopus,34961,metagenomics,Metagenomics
+plos,5167,microbiome,Metagenomics
+bmc,27566,microbiome,Metagenomics
+crossref,8466,microbiome,Metagenomics
+entrez,94773,microbiome,Metagenomics
+arxiv,109,microbiome,Metagenomics
+scopus,102203,microbiome,Metagenomics
+plos,948,shotgun metagenomic sequencing,Metagenomics
+bmc,4156,shotgun metagenomic sequencing,Metagenomics
+crossref,37167,shotgun metagenomic sequencing,Metagenomics
+entrez,7972,shotgun metagenomic sequencing,Metagenomics
+arxiv,54292,shotgun metagenomic sequencing,Metagenomics
+scopus,5964,shotgun metagenomic sequencing,Metagenomics

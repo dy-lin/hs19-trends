@@ -1,0 +1,30 @@
+---
+title: "worksheet_dlin"
+author: "Diana Lin"
+date: "14/11/2019"
+output: html_document
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error = FALSE, message = FALSE, warning = FALSE, fig.width=12, fig.height=8)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+# library(plotly)
+# library(cowplot)
+library(tidyverse)
+library(gganimate)
+# library(fulltext)
+```
+
+### Load the processed data
+```{r load processed data, include = FALSE}
+url <- "https://raw.githubusercontent.com/dy-lin/hs19-trends/master/workshop/data/sequencing-specific-processed.csv"
+seq_spec <- read_csv(url)
+```
+
+
+
+## 

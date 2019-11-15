@@ -1,0 +1,101 @@
+topic,Year,total,cum_total
+10x genomics,2004,1,1
+10x genomics,2006,1,2
+10x genomics,2007,5,7
+10x genomics,2008,15,22
+10x genomics,2009,18,40
+10x genomics,2010,33,73
+10x genomics,2011,44,117
+10x genomics,2012,57,174
+10x genomics,2013,119,293
+10x genomics,2014,91,384
+10x genomics,2015,141,525
+10x genomics,2016,117,642
+10x genomics,2017,102,744
+10x genomics,2018,96,840
+10x genomics,2019,41,881
+10x genomics,NA,2,883
+capillary,2004,2,2
+capillary,2005,2,4
+capillary,2006,6,10
+capillary,2007,12,22
+capillary,2008,29,51
+capillary,2009,25,76
+capillary,2010,56,132
+capillary,2011,71,203
+capillary,2012,139,342
+capillary,2013,153,495
+capillary,2014,136,631
+capillary,2015,97,728
+capillary,2016,92,820
+capillary,2017,69,889
+capillary,2018,47,936
+capillary,2019,32,968
+capillary,NA,5,973
+illumina,2007,1,1
+illumina,2008,6,7
+illumina,2009,15,22
+illumina,2010,27,49
+illumina,2011,71,120
+illumina,2012,113,233
+illumina,2013,171,404
+illumina,2014,142,546
+illumina,2015,108,654
+illumina,2016,57,711
+illumina,2017,44,755
+illumina,2018,36,791
+illumina,2019,20,811
+illumina,NA,10,821
+next-generation,2005,1,1
+next-generation,2006,4,5
+next-generation,2007,2,7
+next-generation,2008,8,15
+next-generation,2009,4,19
+next-generation,2010,14,33
+next-generation,2011,30,63
+next-generation,2012,52,115
+next-generation,2013,60,175
+next-generation,2014,67,242
+next-generation,2015,62,304
+next-generation,2016,64,368
+next-generation,2017,56,424
+next-generation,2018,52,476
+next-generation,2019,31,507
+next-generation,NA,28,535
+oxford nanopore,2006,1,1
+oxford nanopore,2011,2,3
+oxford nanopore,2012,4,7
+oxford nanopore,2013,7,14
+oxford nanopore,2014,5,19
+oxford nanopore,2015,4,23
+oxford nanopore,2016,7,30
+oxford nanopore,2017,12,42
+oxford nanopore,2018,21,63
+oxford nanopore,2019,28,91
+oxford nanopore,NA,10,101
+pacbio,2011,1,1
+pacbio,2012,4,5
+pacbio,2013,9,14
+pacbio,2014,22,36
+pacbio,2015,34,70
+pacbio,2016,52,122
+pacbio,2017,55,177
+pacbio,2018,49,226
+pacbio,2019,57,283
+pacbio,NA,13,296
+sanger,2005,1,1
+sanger,2006,5,6
+sanger,2007,6,12
+sanger,2008,10,22
+sanger,2009,19,41
+sanger,2010,37,78
+sanger,2011,69,147
+sanger,2012,107,254
+sanger,2013,152,406
+sanger,2014,130,536
+sanger,2015,140,676
+sanger,2016,117,793
+sanger,2017,83,876
+sanger,2018,67,943
+sanger,2019,36,979
+sanger,NA,20,999
