@@ -206,11 +206,9 @@ p <- ordered_df %>%
   coord_cartesian(clip = "off", expand = FALSE) +
   scale_fill_viridis_d() +
   coord_flip() +
-  
 # animate
   transition_states(Year, transition_length = 8, state_length = 4, wrap = FALSE) +
   ease_aes("cubic-in-out") +
-  
 # aesthetics
   labs(subtitle = "Trends in sequencing methods", title = "Year {closest_state}", 
        y = "cumulative total papers") +
@@ -235,11 +233,9 @@ p <- ordered_df %>%
   scale_fill_viridis_d() +
   coord_flip() +
 ### </b>
-
 # animate
   transition_states(Year, transition_length = 8, state_length = 4, wrap = FALSE) +
   ease_aes("cubic-in-out") +
-  
 # aesthetics
   labs(subtitle = "Trends in sequencing methods", title = "Year {closest_state}", 
        y = "cumulative total papers") +
@@ -275,16 +271,15 @@ p <- ordered_df %>%
   coord_cartesian(clip = "off", expand = FALSE) +
   scale_fill_viridis_d() +
   coord_flip() +
-  
 # animate
 ### <b>
-  transition_states(Year, transition_length = 8, state_length = 4, wrap = FALSE) +
+  transition_states(Year, transition_length = 8, 
+                    state_length = 4, wrap = FALSE) +
   ease_aes("cubic-in-out") +
 ### </b>
-  
 # aesthetics
-  labs(subtitle = "Trends in sequencing methods", title = "Year {closest_state}", 
-       y = "cumulative total papers") +
+  labs(subtitle = "Trends in sequencing methods", y = "cumulative total papers",
+       title = "Year {closest_state}") +
   theme(plot.background = element_blank(), legend.position = "none",
         axis.ticks.y = element_blank(), axis.text.y = element_blank(),
         text = element_text(size=14), plot.title = element_text(size = 35)) +
@@ -318,9 +313,9 @@ This transition splits your data into multiple states based on the levels in a g
 #### Description:
 Easing defines how a value change to another during tweening. Will it progress linearly, or maybe start slowly and then build up momentum. In `gganimate`, each aesthetic or computed variable can be tweened with individual easing functions using the `ease_aes()` function. All easing functions implemented in tweenr are available, see `tweenr::display_ease` for an overview. Setting an ease for x and/or y will also affect the other related positional aesthetics (e.g. `xmin`, `yend`, etc).
 
-#### Arguments:
-* `default`: The default easing function to use (defaults to `linear`)
-* `...`: Override easing for specific aesthetics
+#### Functions
+* `cubic`: Models a power-of-3 function
+* `-in-out`: The first half of the transition it is applied as-is, while in the last half it is reversed
 
 ## _Racing_ Bar Graph {.smaller}
 Lastly, set up some aesthetics:
@@ -334,15 +329,13 @@ p <- ordered_df %>%
   coord_cartesian(clip = "off", expand = FALSE) +
   scale_fill_viridis_d() +
   coord_flip() +
-  
 # animate
   transition_states(Year, transition_length = 8, state_length = 4, wrap = FALSE) +
   ease_aes("cubic-in-out") +
-  
 # aesthetics
 ### <b>
-  labs(subtitle = "Trends in sequencing methods", title = "Year {closest_state}", 
-       y = "cumulative total papers") +
+  labs(subtitle = "Trends in sequencing methods", 
+       title = "Year {closest_state}", y = "cumulative total papers") +
   theme(plot.background = element_blank(), legend.position = "none",
         axis.ticks.y = element_blank(), axis.text.y = element_blank(),
         text = element_text(size=14), plot.title = element_text(size = 35)) +

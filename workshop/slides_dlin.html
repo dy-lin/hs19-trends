@@ -3478,11 +3478,9 @@ p &lt;- ordered_df %&gt;%
   coord_cartesian(clip = &quot;off&quot;, expand = FALSE) +
   scale_fill_viridis_d() +
   coord_flip() +
-  
 # animate
   transition_states(Year, transition_length = 8, state_length = 4, wrap = FALSE) +
   ease_aes(&quot;cubic-in-out&quot;) +
-  
 # aesthetics
   labs(subtitle = &quot;Trends in sequencing methods&quot;, title = &quot;Year {closest_state}&quot;, 
        y = &quot;cumulative total papers&quot;) +
@@ -3505,11 +3503,9 @@ p &lt;- ordered_df %&gt;%
   coord_cartesian(clip = &quot;off&quot;, expand = FALSE) +
   scale_fill_viridis_d() +
   coord_flip() +
-</b>
-# animate
+</b># animate
   transition_states(Year, transition_length = 8, state_length = 4, wrap = FALSE) +
   ease_aes(&quot;cubic-in-out&quot;) +
-  
 # aesthetics
   labs(subtitle = &quot;Trends in sequencing methods&quot;, title = &quot;Year {closest_state}&quot;, 
        y = &quot;cumulative total papers&quot;) +
@@ -3551,14 +3547,13 @@ p &lt;- ordered_df %&gt;%
   coord_cartesian(clip = &quot;off&quot;, expand = FALSE) +
   scale_fill_viridis_d() +
   coord_flip() +
-  
 # animate
-<b>  transition_states(Year, transition_length = 8, state_length = 4, wrap = FALSE) +
+<b>  transition_states(Year, transition_length = 8, 
+                    state_length = 4, wrap = FALSE) +
   ease_aes(&quot;cubic-in-out&quot;) +
-</b>  
-# aesthetics
-  labs(subtitle = &quot;Trends in sequencing methods&quot;, title = &quot;Year {closest_state}&quot;, 
-       y = &quot;cumulative total papers&quot;) +
+</b># aesthetics
+  labs(subtitle = &quot;Trends in sequencing methods&quot;, y = &quot;cumulative total papers&quot;,
+       title = &quot;Year {closest_state}&quot;) +
   theme(plot.background = element_blank(), legend.position = &quot;none&quot;,
         axis.ticks.y = element_blank(), axis.text.y = element_blank(),
         text = element_text(size=14), plot.title = element_text(size = 35)) +
@@ -3598,11 +3593,11 @@ p &lt;- ordered_df %&gt;%
 
 <p>Easing defines how a value change to another during tweening. Will it progress linearly, or maybe start slowly and then build up momentum. In <code>gganimate</code>, each aesthetic or computed variable can be tweened with individual easing functions using the <code>ease_aes()</code> function. All easing functions implemented in tweenr are available, see <code>tweenr::display_ease</code> for an overview. Setting an ease for x and/or y will also affect the other related positional aesthetics (e.g. <code>xmin</code>, <code>yend</code>, etc).</p>
 
-<h4>Arguments:</h4>
+<h4>Functions</h4>
 
 <ul>
-<li><code>default</code>: The default easing function to use (defaults to <code>linear</code>)</li>
-<li><code>...</code>: Override easing for specific aesthetics</li>
+<li><code>cubic</code>: Models a power-of-3 function</li>
+<li><code>-in-out</code>: The first half of the transition it is applied as-is, while in the last half it is reversed</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2><em>Racing</em> Bar Graph</h2></hgroup><article  class="smaller" id="racing-bar-graph-9">
@@ -3618,14 +3613,12 @@ p &lt;- ordered_df %&gt;%
   coord_cartesian(clip = &quot;off&quot;, expand = FALSE) +
   scale_fill_viridis_d() +
   coord_flip() +
-  
 # animate
   transition_states(Year, transition_length = 8, state_length = 4, wrap = FALSE) +
   ease_aes(&quot;cubic-in-out&quot;) +
-  
 # aesthetics
-<b>  labs(subtitle = &quot;Trends in sequencing methods&quot;, title = &quot;Year {closest_state}&quot;, 
-       y = &quot;cumulative total papers&quot;) +
+<b>  labs(subtitle = &quot;Trends in sequencing methods&quot;, 
+       title = &quot;Year {closest_state}&quot;, y = &quot;cumulative total papers&quot;) +
   theme(plot.background = element_blank(), legend.position = &quot;none&quot;,
         axis.ticks.y = element_blank(), axis.text.y = element_blank(),
         text = element_text(size=14), plot.title = element_text(size = 35)) +
