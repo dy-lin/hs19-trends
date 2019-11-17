@@ -108,8 +108,11 @@ Let's look at the search terms of one specific topic, one specific jounral:
 
 __Sequencing in the Public Library of Science (PLoS)__
 ```{r, echo = FALSE}
-head(seq_spec, 15L)
+head(seq_spec, 10L)
 ```
+To follow along with some live-coding, download this worksheet:
+<center>http://tiny.cc/rladies-ws1</center><!--or
+https://github.com/dy-lin/hs19-trends/blob/master/workshop/worksheet_dlin.Rmd-->
 
 # _Racing_ Bar Graph 
 
