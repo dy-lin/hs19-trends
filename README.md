@@ -13,6 +13,12 @@ Graphic Visualization of trends in Bioinformatics
   2. Relationship of tool development within analytical pipelines 
   3. Geographic hotspots for development of bioinformatic tools and techniques 
 
+## [RLadies Workshop](https://www.meetup.com/rladies-vancouver/events/266252946/)
+1. Racing Bar Graph and Sankey Diagrams [(slides)](https://dy-lin.github.io/hs19-trends/workshop/slides_dlin.html)
+    * Live-coding [worksheet](https://github.com/dy-lin/hs19-trends/blob/master/workshop/worksheet_dlin.Rmd)
+2. Visualization Maps and Bigram Relationships [(slides)](https://dy-lin.github.io/hs19-trends/workshop/slides_egarlock.html)
+    * Live-coding [worksheet](https://github.com/dy-lin/hs19-trends/blob/master/workshop/worksheet_egarlock.Rmd)
+
 ## Team
 * [Diana Lin](https://github.com/dy-lin)
 * [Emma Garlock](https://github.com/esgarlock)
