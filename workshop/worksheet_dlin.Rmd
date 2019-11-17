@@ -10,22 +10,136 @@ knitr::opts_chunk$set(echo = TRUE, error = FALSE, message = FALSE, warning = FAL
 ```
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(ggplot2)
-# library(plotly)
-# library(cowplot)
 library(tidyverse)
 library(gganimate)
-# library(fulltext)
+library(knitr)
 ```
-### Stacked Bar Graph
+## Slides
+Fallen behind? Here are the slides:
+https://dy-lin.github.io/hs19-trends/workshop/slides_dlin.html
 
-### Load the processed data
-```{r load processed data, include = FALSE}
-url <- "https://raw.githubusercontent.com/dy-lin/hs19-trends/master/workshop/data/sequencing-specific-processed.csv"
-seq_spec <- read_csv(url)
+## Regular Bar Graph
+Read in the csv file:
+```{r load data, message = FALSE}
+base <- "https://raw.githubusercontent.com/dy-lin/hs19-trends/master/workshop/"
+seq_spec <- "data/sequencing-specific-processed.csv"
+url <- paste0(base, seq_spec)
+seq_data <- read_csv(url)
 ```
 
+Plot the bar graph (slide 13):
+```{r regular bar, out.width="600px"}
+seq_data %>%
+  drop_na() %>%
+  ggplot(aes(x = FILL_THIS_IN, y = FILL_THIS_IN, fill = FILL_THIS_IN)) +
+  geom_col() + 
+  facet_wrap(~ FILL_THIS_IN, ncol = 8) + 
+  coord_flip() +
+  scale_fill_viridis_d() +
+  theme(axis.text.y = FILL_THIS_IN,
+        axis.ticks.y = FILL_THIS_IN,
+        legend.position = "bottom") +
+  geom_text(aes(y = cum_total, 
+                label = topic), 
+            hjust = "left", 
+            fontface = "bold", 
+            nudge_y = 50)
+```
 
+## Racing Bar Graph
+A Racing bar graph requires additional information. The ordering of the bars for each year needs to be known (slide 15):
+```{r ordering racing bars}
+ordered_df <- NULL
 
-## 
+for (yr in 2003:2019) {
+  order <- seq_data %>% 
+    filter(Year == FILL_THIS_IN) %>% 
+    arrange(FILL_THIS_IN) %>% 
+    mutate(ordering = row_number())
+  
+  ordered_df <- ordered_df %>% rbind(order)
+}
+```
+
+Next, let's start plotting (slide 17):
+```{r racing bars animate overall}
+# plot
+p <- ordered_df %>% 
+  ggplot(aes(ordering, group = topic)) +
+  geom_col(aes(y = FILL_THIS_IN, width = 0.9, fill = FILL_THIS_IN)) +
+  geom_text(aes(y = cum_total, label = topic), 
+            hjust = "left", fontface = "bold", nudge_y = 50) +
+  coord_cartesian(clip = "off", expand = FALSE) +
+  scale_fill_viridis_d() +
+  coord_flip() +
+# animate
+  transition_states(FILL_THIS_IN, transition_length = FILL_THIS_IN, state_length = FILL_THIS_IN, wrap = FILL_THIS_IN) +
+  ease_aes(FILL_THIS_IN) +
+# aesthetics
+  labs(subtitle = "Trends in sequencing methods", title = "Year {closest_state}", 
+       y = "cumulative total papers") +
+  theme(plot.background = element_blank(), legend.position = "none",
+        axis.ticks.y = element_blank(), axis.text.y = element_blank(),
+        text = element_text(size=14), plot.title = element_text(size = 35)) +
+  ylim(0,1300) +
+  xlab("") 
+```
+
+Now, let's animate!
+```{r render animation}
+# rendering the animation
+animate(p, nframes = FILL_THIS_IN,
+      fps = FILL_THIS_IN,
+     end_pause = FILL_THIS_IN)
+```
+
+## Sankey Diagram
+
+Let's load the packages:
+```{r setup sankey, include=FALSE}
+library(tidyverse)
+library(ggrepel)
+library(grid)
+library(ggalluvial)
+library(egg)
+```
+
+Let's read in the csv file (slide 30):
+```{r read csv}
+base <- "https://raw.githubusercontent.com/dy-lin/hs19-trends/master/workshop/"
+SK <- "data/sankey-processed.csv"
+url <- paste0(base, SK)
+datSK <- read_csv(url)
+```
+
+Let's plot (slide 31):
+```{r plot sankey}
+sankey <- ggplot(datSK, aes(y = FILL_THIS_IN, axis1 = FILL_THIS_IN, axis2 = FILL_THIS_IN)) +
+  geom_alluvium(aes(fill = FILL_THIS_IN), width = 1 / 12) +
+  geom_stratum(alpha = 0, width = 1 / 12, color = "black") +
+  scale_x_discrete(limits = c("From", "To"), expand = c(0.3, 0.1)) +
+  scale_fill_viridis_d() +
+  theme_void() +
+  theme(axis.title.y = element_blank(), axis.title.x = element_blank(),
+    axis.ticks.x = element_blank(), axis.ticks.y = element_blank(),
+    axis.text.x = element_blank(),axis.text.y = element_blank(),
+    legend.position = "none", plot.title = element_text(hjust = 0.5)) +
+  ggrepel::geom_label_repel(
+    aes(label = From), stat = "stratum", size = 3, direction = "x", hjust = 10) +
+  ggrepel::geom_label_repel(
+    aes(label = To), stat = "stratum", size = 3, direction = "y", nudge_x = 0.5) +
+  geom_label(aes(label = Weight), stat = "stratum", alpha = 0.8) +
+  ggtitle("Top 10 Institutions Publications By Topic")
+
+sankey <- set_panel_size(sankey, width  = unit(18, "cm"), height = unit(10, "cm"))
+grid.newpage()
+grid.draw(sankey)
+```
+
+Missed some steps along the way?
+Here is the completed worksheet:
+https://github.com/dy-lin/hs19-trends/blob/master/workshop/worksheet_dlin_complete.Rmd
+
+Here is the HTML version:
+https://dy-lin.github.io/hs19-trends/workshop/worksheet_dlin_complete.html
+
