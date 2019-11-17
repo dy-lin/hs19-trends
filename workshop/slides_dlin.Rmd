@@ -348,15 +348,23 @@ p <- ordered_df %>%
 ```
 
 ## _Racing_ Bar Graph
-```{r render animation, eval = FALSE}
-# rendering the animation
-animate(p, nframes = 750,
-      fps = 20,
-     end_pause = 10)
+Let's animate!
+
+The figure shown on the next slide was generated using these parameters:
+```{r render animation high, eval = FALSE}
+# render the animation
+animate(p, nframes = 750, fps = 20, end_pause = 10)
 ```
 
+However, due to the lengthy time it takes to generate, we should reduce these numbers:
+```{r render animation, eval = FALSE}
+# rendering the animation
+animate(p, nframes = 100, fps = 5, end_pause = 10)
+```
+
+
 ## _Racing_ Bar Graph {.smaller}
-`animate(p, nframes = 750, fps = 20, end_pause = 10)`
+`animate(p, nframes = 100, fps = 5, end_pause = 10)`
 
 #### Usage:
 `animate(plot, ...)`
@@ -393,13 +401,14 @@ knitr::include_graphics("https://github.com/dy-lin/hs19-trends/raw/master/worksh
 <center><font size="3">Source: https://cran.r-project.org/web/packages/googleVis/vignettes/googleVis_examples.html</font></center>
 
 
-## Packages {.smaller}
+## Sankey Diagrams
 Here are the packages we need to load for a Sankey diagram:
 ```{r load lib, message = FALSE, warning = FALSE}
 library(tidyverse)
 library(ggrepel)
 library(grid)
 library(ggalluvial)
+library(egg)
 ```
 ## Sankey Diagram {.smaller}
 Let's load in our pre-processed dataset:
