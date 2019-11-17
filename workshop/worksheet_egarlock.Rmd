@@ -4,7 +4,7 @@ author: "Emma Garlock"
 date: "11/15/2019"
 output: html_document
 ---
-## Mapping 
+## Geographic Mapping 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, fig.width=12, fig.height=8)
@@ -20,8 +20,15 @@ library(maps)
 library(sf)
 library(readr)
 library(tidyverse)
+library(knitr)
+library(broom)
 select <- dplyr::select
 ```
+
+## Loading in the coordinates 
+*You do not actually have to run this, all of this is just here so you know how to set it up in the future. You can just skip down to ## Map Plotting 
+*To see where the coordinates come from see: https://github.com/dy-lin/hs19-trends/blob/master/R/LatLongScript.Rmd
+
 
 ```{r readData}
 
@@ -95,23 +102,24 @@ world_data2=read.csv(here("workshop","data","world_data2.csv"))
  #left_join(topicRanks, by=c("region"))
 #world_data2=data.frame(lapply(world_data2,as.character),stringsAsFactors=FALSE)
 ```
-```{r}
 
-```
+## Map Plotting 
+*This will show us a map of the whole world, with the countries coloured based on their most common topic of study 
 
 ```{r worldmap}
 pl <- ggplot() + 
-  geom_polygon(data = world_data2, aes(x = long, y = lat, group=group,fill =log(Count),text=Count))+
+  geom_polygon(data = FILL_THIS_IN, aes(x = FILL_THIS_IN, y = lat, group=FILL_THIS_IN,fill =(FILL_THIS_IN),text=FILL_THIS_IN))+
   #geom_point(data=data,aes(x = long, y = lat),alpha=0.5,size=0.5,colour="grey")+
   coord_fixed(1.3)+
   scale_fill_viridis()+
   theme_void()
 
-ggplotly(pl,tooltip = "text")
+ggplotly(FILL_THIS_IN,tooltip = FILL_THIS_IN)
 
 ## R Markdown
 ```
 
+* Lets look at one continent in more detail. This is subsetting the data to just look at europe, there isn't anything about plottingin this box 
 ```{r}
 ###get only europe
 #world_sf=read.csv(here("workshop","data","world_sf.csv"))
@@ -152,27 +160,99 @@ points_europe <- cbind(points_europe,st_coordinates(points_europe))
 points_europe=points_europe[,-c(6,7)]
 ```
 
-```{r}
-head(europe_data)
-colnames(points_europe)
-```
+*Now we are plotting the number of papers that come out of each country in europe and also adding in the locations of the insitutions. 
 
 ```{r}
 pl <- ggplot() + 
-  geom_polygon(data = europe_data, aes(x = long, y = lat, group = group, fill = log(Count),text=paste(region,Count, sep=";"))) +
-  geom_point(data=points_europe,aes(x=X,y=Y,text=str_wrap(affiliation,50)),alpha=0.5,size=0.5,colour="grey")+
+  geom_FILL_THIS_IN(data = FILL_THIS_IN, aes(x = long, y = lat, group = group, fill = FILL_THIS_IN(FILL_THIS_IN),text=paste(FILL_THIS_IN,Count, sep=";"))) +
+  geom_FILL_THIS_IN(data=points_europe,aes(x=X,y=Y,text=str_wrap(affiliation,50)),alpha=0.5,size=0.5,colour="grey")+
   coord_fixed(1.3)+
   scale_fill_viridis()+
   theme_void()
 
-ggplotly(pl,tooltip="text")
+FILL_THIS_IN(pl,tooltip=FILL_THIS_IN)
 ```
 
 ## Bigrams 
 
-```{r}
-
+Let's load our packages 
+```{r Load Dependencies, results='hide'}
+library(tidyverse)
+library(tidytext)
+library(tm)
+library(widyr)
+library(igraph)
+library(ggplot2)
+library(ggraph)
+library(readr)
+library(tidygraph)
 ```
 
+Load in the CSV, see what topic options we have available 
+```{r}
+df=read.csv(here("workshop","data","bigrams.csv"))
+print(kable(unique(df$topic)))
+```
+
+*This takes the bigram frequency determination and plotting and wraps it in one function, visualize_bigrams().The plotting starts on line 228
+
+```{r}
+visualize_bigrams <- function(df_name, textfield, topic_title){
+  
+    # Create frequencies of bigrams
+    df_cleaned <- df_name %>% 
+      mutate(textfield_clean = removeWords(gsub("[^A-Za-z0-9 ]", "", {{textfield}}), stop_words$word))
+    
+    df_bigrams <- df_cleaned %>%
+      unnest_tokens(bigrams, textfield_clean, token = "ngrams", n = 2)
+    
+    df_freq <- as.data.frame(table(df_bigrams$bigrams)) %>% 
+      arrange(desc(Freq))
+    
+    # Visualizations
+    df_top_bigrams <- df_freq %>%
+      top_n(100, Freq) %>% 
+      separate(Var1, c("word1", "word2"))
+    
+    top_bigram_words <- c(df_top_bigrams$word1, df_top_bigrams$word2) %>%
+      unique()
+    
+    word_list <- df_cleaned %>%
+      unnest_tokens(words, textfield_clean, token = "ngrams", n = 1) 
+    
+    df_word_list <- as.data.frame(table(word_list$words)) %>% 
+      arrange(desc(Freq)) %>%
+      filter(Var1 %in% top_bigram_words)
+    
+    names(df_word_list)[2] <- "Term_Frequency"
+    names(df_top_bigrams)[3] <- "Edge_Frequency"
+    
+    graph_from_data_frame(vertices =  df_word_list, d = df_top_bigrams) -> graph_hold
+    
+    pl <- graph_hold %>%
+      ggraph(layout = FILL_THIS_IN) +
+      geom_FILL_THIS_IN(aes(edge_colour = log(FILL_THIS_IN)), show.legend = TRUE) +
+      geom_FILL_THIS_IN(aes(color = Term_Frequency, size = Term_Frequency), alpha = 0.7) +
+      scale_fill_viridis_FILL_THIS_IN() +
+      scale_edge_color_viridis(direction=-1)+
+      geom_node_text(aes(label = name), repel = TRUE) +
+      scale_color_viridis_FILL_THIS_IN(direction = -1) +
+      theme_void() +
+      guides(size=FALSE) +
+      labs(title = FILL_THIS_IN(FILL_THIS_IN)) +
+      theme(plot.title = element_text(size = 26, face = "bold"))
+    
+    ggsave(pl,filename = paste0("../workshop/", "bigrams_", str_to_lower(str_replace(topic_title, "\\s", "_")), ".png")
+           ,width = 12
+           ,height = 8)
+    pl
+}
+```
+Now that we have the function made, decide on a topic and make a bigram digram for those topics 
+```{r}
+df_FILL_THIS_IN <- df %>% 
+  filter(topic == "FILL_THIS_IN")
+visualize_bigrams(df_FILL_THIS_IN, FILL_THIS_IN, "")
+```
 
 
