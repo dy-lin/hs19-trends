@@ -1,0 +1,70 @@
+From,To,Weight,count
+EMBLy,Databases,14,26
+Harvard U,Phylogenetics,12,19
+U Washington,Variant Calling,10,25
+Baylor College of Medicine,Variant Calling,10,26
+UC San Diego,Genome Annotation,8,17
+U Michigan,Phylogenetics,8,16
+U Chicago,Variant Calling,8,20
+Duke U,Phylogenetics,7,16
+U Washington,Phylogenetics,7,25
+Baylor College of Medicine,Structural Prediction,6,26
+EMBLy,Genome Annotation,5,26
+J. Craig Venter Institute,Assembly,5,22
+U Washington,Genome Annotation,4,25
+U Chicago,Gene Expression,4,20
+Cornell U,Gene Expression,4,20
+Cornell U,Phylogenetics,4,20
+J. Craig Venter Institute,Genome Annotation,4,22
+J. Craig Venter Institute,Sequence Alignment,4,22
+J. Craig Venter Institute,Sequencing,4,22
+J. Craig Venter Institute,Variant Calling,4,22
+UC San Diego,Phylogenetics,3,17
+Duke U,Gene Expression,3,16
+U Chicago,Epigenetics,3,20
+Cornell U,Sequencing,3,20
+Cornell U,Structural Prediction,3,20
+Harvard U,Genome Annotation,3,19
+EMBLy,Structural Prediction,3,26
+UC San Diego,Structural Prediction,2,17
+Duke U,Assembly,2,16
+U Michigan,Gene Expression,2,16
+U Michigan,Genome Annotation,2,16
+U Michigan,Sequence Alignment,2,16
+U Washington,Assembly,2,25
+U Chicago,Phylogenetics,2,20
+Baylor College of Medicine,Assembly,2,26
+Baylor College of Medicine,Genome Annotation,2,26
+Baylor College of Medicine,Sequencing,2,26
+Cornell U,Epigenetics,2,20
+Cornell U,Variant Calling,2,20
+UC San Diego,Gene Expression,1,17
+UC San Diego,Sequence Alignment,1,17
+UC San Diego,Sequencing,1,17
+UC San Diego,Variant Calling,1,17
+Duke U,Epigenetics,1,16
+Duke U,Sequence Alignment,1,16
+Duke U,Structural Prediction,1,16
+Duke U,Variant Calling,1,16
+U Michigan,Structural Prediction,1,16
+U Michigan,Variant Calling,1,16
+U Washington,Epigenetics,1,25
+U Washington,Structural Prediction,1,25
+U Chicago,Genome Annotation,1,20
+U Chicago,Sequence Alignment,1,20
+U Chicago,Sequencing,1,20
+Baylor College of Medicine,Databases,1,26
+Baylor College of Medicine,Gene Expression,1,26
+Baylor College of Medicine,Phylogenetics,1,26
+Baylor College of Medicine,Sequence Alignment,1,26
+Cornell U,Assembly,1,20
+Cornell U,Databases,1,20
+Harvard U,Assembly,1,19
+Harvard U,Gene Expression,1,19
+Harvard U,Sequencing,1,19
+Harvard U,Variant Calling,1,19
+EMBLy,Assembly,1,26
+EMBLy,Gene Expression,1,26
+EMBLy,Sequence Alignment,1,26
+EMBLy,Sequencing,1,26
+J. Craig Venter Institute,Phylogenetics,1,22
