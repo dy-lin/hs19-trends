@@ -11,12 +11,14 @@ output:
 knitr::opts_chunk$set(echo = TRUE, fig.width=12, fig.height=8)
 ```
 
-# Mapping 
+# Mapping
+## Mapping 
 We want to look at several trends 
--Most Common topic per country 
--Number of papers per country 
 
-```{r graph example, out.width="450px", echo = FALSE, fig.align = 'center'}
+- Most Common topic per country 
+- Number of papers per country 
+
+```{r graph example, echo = FALSE}
 knitr::include_graphics("https://github.com/dy-lin/hs19-trends/blob/master/workshop/Map_example.png")
 ```
 
@@ -40,27 +42,46 @@ library(knitr)
 library(broom)
 ```
 ## Mapping 
--There is a lot of code in the worksheet that describes how we got the data into the format we needed -We will do one global plot and one of europe 
+There is a lot of code in the worksheet that describes how we got the data into the format we needed 
 
-##Mapping 
+-We will do one global plot and one of Europe 
+
+## Mapping 
 Here is an example of what the data looks like 
-```{r}
+```{r,include=FALSE}
+world_data2=read.csv(here("workshop","data","world_data2.csv"))
+```
+```{r print overview table, echo = FALSE}
 world_data2[14572:14580,2:9] %>% kable()
 ```
+
 ## Mapping 
-```{r}
+
+```{r,message = FALSE, warning = FALSE}
 pl <- ggplot() + 
-  geom_polygon(data = world_data2, aes(x = long, y = lat, group = group, fill = log(Count),text=Count)) +
+  geom_polygon(data = world_data2, aes(x = long, y = lat,
+  group = group,fill = log(Count),text=Count)) +
   coord_fixed(1.3)+
   scale_fill_viridis()+
   theme_void()
 
-ggplotly(pl,tooltip = "text")
+world_plotly=ggplotly(pl,tooltip = "text")
 ```
 
-## Slide with Plot
+## Mapping 
+```{r,include=FALSE}
+europe_data=read.csv(here("workshop","data","europe_data.csv"))
+points_europe=read.csv(here("workshop","data","europe_points.csv"))
+```
 
-```{r pressure}
-plot(pressure)
+```{r,message = FALSE, warning = FALSE}
+ pl <- ggplot() + 
+  geom_polygon(data = europe_data, aes(x = long, y = lat, 
+  group = group, fill = log(Count),text=paste(region,Count, sep=";"))) +
+  geom_point(data=points_europe,aes(x=X,y=Y,text=str_wrap(affiliation,50)),
+  alpha=0.5,size=0.5,colour="grey")+
+  coord_fixed(1.3)+
+  scale_fill_viridis()+
+  theme_void()
 ```
 
