@@ -1,10 +1,10 @@
 ---
-title: 'Hackseq: Trends in Bioinformatics'
+title: 'hackseq: Trends in Bioinformatics'
 author: "Diana Lin and Emma Garlock"
 date: "14/11/2019"
 output:
   ioslides_presentation:
-    logo: 17745135.png
+    logo: R-LadiesGlobal.png
 ---
 
 
@@ -13,9 +13,31 @@ knitr::opts_chunk$set(echo = TRUE, fig.width=12, fig.height=8)
 # tidy.opts=list(width.cutoff=60),tidy=TRUE
 # knitr::opts_chunk$set(echo = TRUE, error = FALSE, message = FALSE, warning = FALSE, fig.width=12, fig.height=8)
 ```
+## `hackseq`
+`hackseq` is a Vancouver-based hackathon focused on genomics. They want to bring individuals with diverse backgrounds together to collaborate on scientific questions and problems in genomics.
+
+Their philosophy is __open-source__, __open-notebook__, __open science__.
+
+```{r hackseq, out.width="500px", echo = FALSE, fig.align = 'center'}
+knitr::include_graphics("https://github.com/dy-lin/hs19-trends/raw/master/workshop/hackseq.png")
+```
+
+<center><font size="3">Source: https://www.hackseq.com</font><center>
+
+## Project Goals
+__Bioinformatics:__ the development and use of computational methods in genetics and genomics
+
+### __Graphic Visualization of trends in Bioinformatics__
+
+1. Usage of bioinformatic tools and technqiues (ex. sequence alignment, genome assembly, metagenomics etc)
+2. Relationship of tool development within analytical pipelines
+3. Geographic hotspots for development of bioinformatic tools and techniques
+
+__End product__: A visualization tool of trends in Bioinformatics, which can help prospective graduate students choose an institution or area of research.
 
 ## Trends in Bioinformatics
-* __Bioinformatics:__ the development and use of computational methods in genetics and genomics
+
+#### __Workflow__
 
 1. Divide the field of Bioinformatics into topics
     + Sequencing, Assembly, ...
@@ -86,14 +108,32 @@ Let's look at the search terms of one specific topic, one specific jounral:
 
 __Sequencing in the Public Library of Science (PLoS)__
 ```{r, echo = FALSE}
-head(seq_spec, 18L)
+head(seq_spec, 15L)
 ```
 
-# From a Regular Bar Graph to a _Racing_ Bar Graph 
+# _Racing_ Bar Graph 
+
+<!--## What is a Racing Bar Graph?
+```{r , out.width="800px", echo = FALSE, fig.align = 'center'}
+knitr::include_graphics("https://i2.wp.com/michaeltoth.me/figures/city_populations/create_graph-1.gif?w=456&ssl=1")
+```
+<center><font size="3">Source: https://www.r-bloggers.com/how-to-create-a-bar-chart-race-in-r-mapping-united-states-city-population-1790-2010/</font></center>-->
+
+## What is a Racing Bar Graph?
+```{r , out.width="700px", echo = FALSE, fig.align = 'center'}
+knitr::include_graphics("https://emilykuehler.github.io/img/barplot_race.gif")
+```
+<center><font size="3">Source: https://emilykuehler.github.io/bar-chart-race/</font></center>
+
+## What is a Racing Bar Graph?
+```{r , out.width="700px", echo = FALSE, fig.align = 'center'}
+knitr::include_graphics("https://emilykuehler.github.io/img/nba_scoring_leaders.gif")
+```
+<center><font size="3">Source: https://emilykuehler.github.io/bar-chart-race/</font></center>
 
 ## Regular Bar Graph {.smaller}
 
-First, let's load the dataset:
+First, let's load our dataset and make a _regular_ bar graph:
 ```{r load data, message = FALSE}
 base <- "https://raw.githubusercontent.com/dy-lin/hs19-trends/master/workshop/"
 seq_spec <- "data/sequencing-specific-processed.csv"
@@ -210,7 +250,7 @@ p <- ordered_df %>%
   xlab("") 
 ```
 ## _Racing_ Bar Graph {.smaller}
-<center>`coord_cartesian(clip = "off", expand = FALSE)`</center>
+`coord_cartesian(clip = "off", expand = FALSE)`
 
 #### Usage:
 
@@ -253,7 +293,7 @@ p <- ordered_df %>%
 ```
 
 ## _Racing_ Bar Graph {.smaller}
-> `transition_states(Year, transition_length = 8, state_length = 4, wrap = FALSE)`
+`transition_states(Year, transition_length = 8, state_length = 4, wrap = FALSE)`
 
 #### Usage: 
 
@@ -269,7 +309,7 @@ This transition splits your data into multiple states based on the levels in a g
 * `wrap`: Should the animation wrap-around? If TRUE the last state will be transitioned into the first.
 
 ## _Racing_ Bar Graph {.smaller}
-> `ease_aes("cubic-in-out")`
+`ease_aes("cubic-in-out")`
 
 #### Usage:
 
@@ -320,7 +360,7 @@ animate(p, nframes = 750,
 ```
 
 ## _Racing_ Bar Graph {.smaller}
-> `animate(p, nframes = 750, fps = 20, end_pause = 10)`
+`animate(p, nframes = 750, fps = 20, end_pause = 10)`
 
 #### Usage:
 `animate(plot, ...)`
@@ -341,18 +381,18 @@ knitr::include_graphics("https://github.com/dy-lin/hs19-trends/raw/master/figure
 ```
 <center><font size="3">Source:https://dy-lin.github.io/hs19-trends/R/general_vis.html</font></center>
 
-## Resources
+<!--## Resources
 * How to Create a Bar Chart Race in R – Mapping United States City Population 1790-2010
     * https://www.r-bloggers.com/how-to-create-a-bar-chart-race-in-r-mapping-united-states-city-population-1790-2010/
 * Bar Chart Races With `gganimate`
-    * https://emilykuehler.github.io/bar-chart-race/
+    * https://emilykuehler.github.io/bar-chart-race/-->
     
 # Sankey Diagrams
 
-## What is a Sankey Diagram? {.vcenter .flexbox}
+## What is a Sankey Diagram? {.vcenter .flexbox .smaller}
 * _Sankey Diagram_: a type of flow diagram where the width of the arrows is proportional to the flow rate
-```{r sankey example, out.width="500px", echo = FALSE}
-knitr::include_graphics("https://dy-lin.github.io/hs19-trends/workshop/sankey_example.png")
+```{r sankey example, out.width="450px", echo = FALSE, fig.align = 'center'}
+knitr::include_graphics("https://github.com/dy-lin/hs19-trends/raw/master/workshop/sankey_example.png")
 ```
 <center><font size="3">Source: https://cran.r-project.org/web/packages/googleVis/vignettes/googleVis_examples.html</font></center>
 
@@ -360,23 +400,100 @@ knitr::include_graphics("https://dy-lin.github.io/hs19-trends/workshop/sankey_ex
 ## Packages {.smaller}
 Here are the packages we need to load for a Sankey diagram:
 ```{r load lib, message = FALSE, warning = FALSE}
-library(data.table)
-library(textrank)
-library(udpipe)
-library(dplyr)
-library(tm)
-library(tidytext)
-library(stringr)
-library(ggplot2)
-library(magrittr)
-library(plotly)
 library(tidyverse)
-library(googleVis)
 library(ggrepel)
-library(egg)
 library(grid)
 library(ggalluvial)
 ```
+## Sankey Diagram {.smaller}
+Let's load in our pre-processed dataset:
+```{r load sankey data, message = FALSE, warning = FALSE}
+base <- "https://raw.githubusercontent.com/dy-lin/hs19-trends/master/workshop/"
+SK <- "data/sankey-processed.csv"
+url <- paste0(base, SK)
+datSK <- read_csv(url)
+```
+```{r print datSK, echo = FALSE}
+datSK %>% head() %>% kable()
+```
+
+## Sankey Diagram {.smaller}
+Here's an overview of plotting the Sankey diagram using `ggplot`:
+```{r plot sankey, eval = FALSE}
+sankey <- ggplot(datSK, aes(y = Weight, axis1 = From, axis2 = To)) +
+  geom_alluvium(aes(fill = From), width = 1 / 12) +
+  geom_stratum(alpha = 0, width = 1 / 12, color = "black") +
+  scale_x_discrete(limits = c("From", "To"), expand = c(0.3, 0.1)) +
+  scale_fill_viridis_d() +
+  theme_void() +
+  theme(axis.title.y = element_blank(), axis.title.x = element_blank(),
+    axis.ticks.x = element_blank(), axis.ticks.y = element_blank(),
+    axis.text.x = element_blank(),axis.text.y = element_blank(),
+    legend.position = "none", plot.title = element_text(hjust = 0.5)) +
+  ggrepel::geom_label_repel(
+    aes(label = From), stat = "stratum", size = 3, direction = "x", hjust = 10) +
+  ggrepel::geom_label_repel(
+    aes(label = To), stat = "stratum", size = 3, direction = "y", nudge_x = 0.5) +
+  geom_label(aes(label = Weight), stat = "stratum", alpha = 0.8) +
+  ggtitle("Top 10 Institutions Publications By Topic")
+
+sankey <- set_panel_size(sankey, width  = unit(18, "cm"), height = unit(10, "cm"))
+grid.newpage()
+grid.draw(sankey)
+```
+
+## Sankey Diagram {.smaller}
+Let's take a closer look at the `geom` functions used:
+```{r plot sankey geom, eval = FALSE}
+sankey <- ggplot(datSK, aes(y = Weight, axis1 = From, axis2 = To)) +
+### <b>
+  geom_alluvium(aes(fill = From), width = 1 / 12) +
+  geom_stratum(alpha = 0, width = 1 / 12, color = "black") +
+### </b>
+  scale_x_discrete(limits = c("From", "To"), expand = c(0.3, 0.1)) +
+  scale_fill_viridis_d() +
+  theme_void() +
+  theme(axis.title.y = element_blank(), axis.title.x = element_blank(),
+    axis.ticks.x = element_blank(), axis.ticks.y = element_blank(),
+    axis.text.x = element_blank(),axis.text.y = element_blank(),
+    legend.position = "none", plot.title = element_text(hjust = 0.5)) +
+  ggrepel::geom_label_repel(
+    aes(label = From), stat = "stratum", size = 3, direction = "x", hjust = 10) +
+  ggrepel::geom_label_repel(
+    aes(label = To), stat = "stratum", size = 3, direction = "y", nudge_x = 0.5) +
+  geom_label(aes(label = Weight), stat = "stratum", alpha = 0.8) +
+  ggtitle("Top 10 Institutions Publications By Topic")
+
+sankey <- set_panel_size(sankey, width  = unit(18, "cm"), height = unit(10, "cm"))
+grid.newpage()
+grid.draw(sankey)
+```
+
+## Sankey Diagram {.smaller}
+`geom_alluvium(aes(fill = From), width = 1 / 12)`
+
+#### Usage:
+`geom_alluvium(mapping = NULL, data = NULL, stat = "alluvium", position = "identity", width = 1/3, knot.pos = 1/6, na.rm = FALSE, show.legend = NA, inherit.aes = TRUE, ...)`
+
+#### Description:
+`geom_alluvium` receives a dataset of the horizontal (`x`) and vertical (`y`, `ymin`, `ymax`) positions of the __lodes__ of an alluvial diagram, the intersections of the alluvia with the strata. It plots both the lodes themselves, using `geom_lode()`, and the flows between them, using `geom_flow()`.
+
+#### Arguments:
+* `mapping`: Set of aesthetic mappings created by `aes()`
+* `width`: Numeric; the width of each stratum, as a proportion of the distance between axes. Defaults to 1/3.
+
+## Sankey Diagram {.smaller}
+`geom_stratum(alpha = 0, width = 1 / 12, color = "black")`
+
+#### Usage:
+`geom_stratum(mapping = NULL, data = NULL, stat = "stratum", position = "identity", show.legend = NA, inherit.aes = TRUE, width = 1/3, na.rm = FALSE, ...)`
+
+#### Description:
+`geom_stratum` receives a dataset of the horizontal (`x`) and vertical (`y`, `ymin`, `ymax`) positions of the strata of an alluvial diagram. It plots rectangles for these strata of a provided `width`.
+
+#### Arguments:
+* `width`: Numeric; the width of each stratum, as a proportion of the distance between axes. Defaults to 1/3.
+
 ## Sankey Diagram
 
 ```{r final sankey, out.width="800px", echo = FALSE}
@@ -384,6 +501,6 @@ knitr::include_graphics("https://dy-lin.github.io/hs19-trends/R/Sankey.png")
 ```
 <center><font size="3">Source: https://dy-lin.github.io/hs19-trends/R/visualization_sankey.html</font></center>
 
-<!--## Resources
-* googleVis examples
-    * <font size="3">https://cran.r-project.org/web/packages/googleVis/vignettes/googleVis_examples.html</font>-->
+## GitHub
+For more information regarding the Hackseq project:
+https://github.com/dy-lin/hs19-trends
