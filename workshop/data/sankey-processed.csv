@@ -63,8 +63,8 @@ Harvard U,Assembly,1,19
 Harvard U,Gene Expression,1,19
 Harvard U,Sequencing,1,19
 Harvard U,Variant Calling,1,19
-EMBLy,Assembly,1,26
-EMBLy,Gene Expression,1,26
-EMBLy,Sequence Alignment,1,26
-EMBLy,Sequencing,1,26
+EMBL,Assembly,1,26
+EMBL,Gene Expression,1,26
+EMBL,Sequence Alignment,1,26
+EMBL,Sequencing,1,26
 J. Craig Venter Institute,Phylogenetics,1,22
