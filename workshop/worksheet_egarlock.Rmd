@@ -30,7 +30,7 @@ select <- dplyr::select
 *To see where the coordinates come from see: https://github.com/dy-lin/hs19-trends/blob/master/R/LatLongScript.Rmd
 
 
-```{r readData}
+```{r readData,include=FALSE}
 
 data <- read_csv(here("data","affiliations_lat_long.csv"))
 data <- data %>% 
