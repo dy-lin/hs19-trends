@@ -18,8 +18,8 @@ We want to look at several trends
 - Most Common topic per country 
 - Number of papers per country 
 
-```{r graph example, echo = FALSE}
-knitr::include_graphics("https://github.com/dy-lin/hs19-trends/blob/master/workshop/Map_example.png")
+```{r, out.width="700px", echo = FALSE, fig.align = 'center'}
+knitr::include_graphics("https://dy-lin.github.io/hs19-trends/workshop/Map_example.png")
 ```
 
 ## Mapping 
@@ -51,37 +51,182 @@ Here is an example of what the data looks like
 ```{r,include=FALSE}
 world_data2=read.csv(here("workshop","data","world_data2.csv"))
 ```
+
 ```{r print overview table, echo = FALSE}
 world_data2[14572:14580,2:9] %>% kable()
 ```
 
 ## Mapping 
 
-```{r,message = FALSE, warning = FALSE}
-pl <- ggplot() + 
+```{r,message = FALSE, warning = FALSE,eval=FALSE}
+pl <- ggplot() +
+  ### <b>
   geom_polygon(data = world_data2, aes(x = long, y = lat,
   group = group,fill = log(Count),text=Count)) +
+  ### </b>
   coord_fixed(1.3)+
   scale_fill_viridis()+
   theme_void()
 
 world_plotly=ggplotly(pl,tooltip = "text")
 ```
+## Mapping
+
+```{r,message = FALSE, warning = FALSE,eval=FALSE}
+pl <- ggplot() +
+  geom_polygon(data = world_data2, aes(x = long, y = lat,
+  group = group,fill = log(Count),text=Count)) +
+  ### <b>
+  coord_fixed(1.3)+
+  scale_fill_viridis()+
+  theme_void()
+### </b>
+
+world_plotly=ggplotly(pl,tooltip = "text")
+```
+
 
 ## Mapping 
 ```{r,include=FALSE}
 europe_data=read.csv(here("workshop","data","europe_data.csv"))
 points_europe=read.csv(here("workshop","data","europe_points.csv"))
 ```
+If we want to look at certain countries we can do that too 
 
-```{r,message = FALSE, warning = FALSE}
+- depending on how much data is in one region this may be a good idea 
+- will have to figure out the coordinates you want 
+- plot will be set up similarily to the global one but we will add in new elements 
+
+
+## Mapping 
+
+```{r,message = FALSE, warning = FALSE,eval=FALSE}
+## <b>
  pl <- ggplot() + 
   geom_polygon(data = europe_data, aes(x = long, y = lat, 
   group = group, fill = log(Count),text=paste(region,Count, sep=";"))) +
+  ## </b>
   geom_point(data=points_europe,aes(x=X,y=Y,text=str_wrap(affiliation,50)),
   alpha=0.5,size=0.5,colour="grey")+
   coord_fixed(1.3)+
   scale_fill_viridis()+
   theme_void()
+```
+
+## Mapping 
+```{r,message = FALSE, warning = FALSE,eval=FALSE}
+ pl <- ggplot() + 
+  geom_polygon(data = europe_data, aes(x = long, y = lat, 
+  group = group, fill = log(Count),text=paste(region,Count, sep=";"))) +
+  ## <b>
+  geom_point(data=points_europe,aes(x=X,y=Y,text=str_wrap(affiliation,50)),
+  alpha=0.5,size=0.5,colour="grey")+
+  ## </b>
+  coord_fixed(1.3)+
+  scale_fill_viridis()+
+  theme_void()
+```
+# Bigrams 
+
+## Bigrams 
+
+__Bigrams__ are two consecutive words within a given text input 
+
+  - ex. We love coding in R
+  - (We Love), (Love coding), (coding in), (in R)
+
+## Bigrams
+
+ __visualize_bigrams__: extracts bigrams from a text field, calculates frequency of bigrams, and creates a bigram plot to visualize relationships between words
+    
+* `df_name`: name of dataframe that contains the text field of interest
+* `textfield`: name of text field (ie. column name)
+    
+```{r,eval=FALSE}
+visualize_bigrams <- function(df_name, textfield, topic_title)
+```
+
+## Bigrams 
+In the worksheet, you will see a lot of code that just talks about the formatting of the data. If you are interested in that look into it, but we're just covering the plotting 
+```{r,include=FALSE}
+visualize_bigrams <- function(df_name, textfield, topic_title){
+  
+    # Create frequencies of bigrams
+    df_cleaned <- df_name %>% 
+      mutate(textfield_clean = removeWords(gsub("[^A-Za-z0-9 ]", "", {{textfield}}), stop_words$word))
+    
+    df_bigrams <- df_cleaned %>%
+      unnest_tokens(bigrams, textfield_clean, token = "ngrams", n = 2)
+    
+    df_freq <- as.data.frame(table(df_bigrams$bigrams)) %>% 
+      arrange(desc(Freq))
+    
+    # Visualizations
+    df_top_bigrams <- df_freq %>%
+      top_n(100, Freq) %>% 
+      separate(Var1, c("word1", "word2"))
+    
+    top_bigram_words <- c(df_top_bigrams$word1, df_top_bigrams$word2) %>%
+      unique()
+    
+    word_list <- df_cleaned %>%
+      unnest_tokens(words, textfield_clean, token = "ngrams", n = 1) 
+    
+    df_word_list <- as.data.frame(table(word_list$words)) %>% 
+      arrange(desc(Freq)) %>%
+      filter(Var1 %in% top_bigram_words)
+    
+    names(df_word_list)[2] <- "Term_Frequency"
+    names(df_top_bigrams)[3] <- "Edge_Frequency"
+    
+    graph_from_data_frame(vertices =  df_word_list, d = df_top_bigrams) -> graph_hold
+    
+    pl <- graph_hold %>%
+      ggraph(layout = "fr") +
+      geom_edge_link(aes(edge_colour = log(Edge_Frequency)), show.legend = TRUE) +
+      geom_node_point(aes(color = Term_Frequency, size = Term_Frequency), alpha = 0.7) +
+      scale_fill_viridis_c() +
+      scale_edge_color_viridis(direction=-1)+
+      geom_node_text(aes(label = name), repel = TRUE) +
+      scale_color_viridis_c(direction = -1) +
+      theme_void() +
+      guides(size=FALSE) +
+      labs(title = quo_name(topic_title)) +
+      theme(plot.title = element_text(size = 26, face = "bold"))
+    
+    ggsave(pl,filename = paste0("../figures/", "bigrams_", str_to_lower(str_replace(topic_title, "\\s", "_")), ".png")
+           ,width = 12
+           ,height = 8)
+    pl
+}
+```
+
+## Bigrams 
+```{r,message = FALSE, eval=FALSE}
+pl <- graph_hold %>%
+      ggraph(layout = "fr") +
+      geom_edge_link(aes(edge_alpha = Edge_Frequency), show.legend = TRUE) +
+      geom_node_point(aes(color = Term_Frequency, size = Term_Frequency), alpha = 0.7) +
+      scale_fill_viridis_c() +
+      geom_node_text(aes(label = name), repel = TRUE) +
+      scale_color_viridis_c(direction = -1) +
+      theme_void() +
+      guides(size=FALSE) +
+      labs(title = quo_name(topic_title)) +
+      theme(plot.title = element_text(size = 26, face = "bold"))
+```
+
+## Bigrams {.vcenter .flexbox}
+```{r, include=FALSE}
+df=read.csv(here("workshop","data","bigrams.csv"))
+```
+
+``` {r,echo=FALSE}
+print(kable(unique(df$topic),col.names = "Search Term"))
+```
+
+## Bigrams
+```{r final sankey, out.width="800px", echo = FALSE}
+knitr::include_graphics("https://dy-lin.github.io/hs19-trends/figures/bigrams_assembly.png")
 ```
 
