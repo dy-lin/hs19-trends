@@ -43,14 +43,24 @@ library(knitr)
 library(broom)
 ```
 ## Mapping 
+Packages needed for plotting 
+
+`ggplot2`: package for data visualizations 
+
+`plotly`: makes interactive visualizations
+
+`viridis`: good colour palatte for dealing with colourblindness and greyscale issues 
+
+## Mapping 
 There is a lot of code in the worksheet that describes how we got the data into the format we needed
 
 -We will do one global plot and one of Europe 
 
-## Mapping 
-Here is an example of what the data looks like 
+## Mapping {.smaller}
+Here is an example of what the data looks like:
+
 ```{r,include=FALSE}
-world_data2=read.csv(here("workshop","data","world_data2.csv"))
+world_data2=read.csv("https://raw.githubusercontent.com/dy-lin/hs19-trends/master/workshop/data/world_data2.csv")
 ```
 
 ```{r print overview table, echo = FALSE}
@@ -93,8 +103,8 @@ knitr::include_graphics("https://dy-lin.github.io/hs19-trends/workshop/world_map
 
 ## Mapping 
 ```{r,include=FALSE}
-europe_data=read.csv(here("workshop","data","europe_data.csv"))
-points_europe=read.csv(here("workshop","data","europe_points.csv"))
+europe_data=read.csv("https://raw.githubusercontent.com/dy-lin/hs19-trends/master/workshop/data/europe_data.csv")
+points_europe=read.csv("https://raw.githubusercontent.com/dy-lin/hs19-trends/master/workshop/data/europe_points.csv")
 ```
 If we want to look at certain countries we can do that too 
 
@@ -102,6 +112,11 @@ If we want to look at certain countries we can do that too
 - will have to figure out the coordinates you want 
 - plot will be set up similarily to the global one but we will add in new elements 
 
+## Mapping{.smaller}
+
+```{r,echo=FALSE}
+europe_data[67:72,]%>%kable()
+```
 
 ## Mapping 
 
@@ -109,9 +124,11 @@ If we want to look at certain countries we can do that too
 ## <b>
  pl <- ggplot() + 
   geom_polygon(data = europe_data, aes(x = long, y = lat, 
-  group = group, fill = log(Count),text=paste(region,Count, sep=";"))) +
+  group = group, fill = log(Count),
+  text=paste(region,Count, sep=";"))) +
   ## </b>
-  geom_point(data=points_europe,aes(x=X,y=Y,text=str_wrap(affiliation,50)),
+  geom_point(data=points_europe,aes(x=X,y=Y,
+  text=str_wrap(affiliation,50)),
   alpha=0.5,size=0.5,colour="grey")+
   coord_fixed(1.3)+
   scale_fill_viridis()+
@@ -122,9 +139,11 @@ If we want to look at certain countries we can do that too
 ```{r,message = FALSE, warning = FALSE,eval=FALSE}
  pl <- ggplot() + 
   geom_polygon(data = europe_data, aes(x = long, y = lat, 
-  group = group, fill = log(Count),text=paste(region,Count, sep=";"))) +
+  group = group, fill = log(Count),
+  text=paste(region,Count, sep=";"))) +
   ## <b>
-  geom_point(data=points_europe,aes(x=X,y=Y,text=str_wrap(affiliation,50)),
+  geom_point(data=points_europe,aes(x=X,y=Y,
+  text=str_wrap(affiliation,50)),
   alpha=0.5,size=0.5,colour="grey")+
   ## </b>
   coord_fixed(1.3)+
@@ -147,6 +166,25 @@ __Bigrams__ are two consecutive words within a given text input
 
   - ex. We love coding in R
   - (We Love), (Love coding), (coding in), (in R)
+  
+## Bigrams 
+```{r, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(tidytext)
+library(tm)
+library(widyr)
+library(igraph)
+library(ggplot2)
+library(ggraph)
+library(readr)
+library(tidygraph)
+```
+
+## Bigrams 
+
+`ggraph`: visualizations for network structures 
+
+`ggplot2`: package for data visualizations 
 
 ## Bigrams
 
@@ -218,8 +256,10 @@ visualize_bigrams <- function(df_name, textfield, topic_title){
 ```{r,message = FALSE, eval=FALSE}
 pl <- graph_hold %>%
       ggraph(layout = "fr") +
-      geom_edge_link(aes(edge_alpha = Edge_Frequency), show.legend = TRUE) +
-      geom_node_point(aes(color = Term_Frequency, size = Term_Frequency), alpha = 0.7) +
+      geom_edge_link(aes(edge_alpha = Edge_Frequency), 
+      show.legend = TRUE) +
+      geom_node_point(aes(color = Term_Frequency, 
+      size = Term_Frequency), alpha = 0.7) +
       scale_fill_viridis_c() +
       geom_node_text(aes(label = name), repel = TRUE) +
       scale_color_viridis_c(direction = -1) +
@@ -231,12 +271,20 @@ pl <- graph_hold %>%
 
 ## Bigrams {.vcenter .flexbox}
 ```{r, include=FALSE}
-df=read.csv(here("workshop","data","bigrams.csv"))
+df=read.csv("https://raw.githubusercontent.com/dy-lin/hs19-trends/master/workshop/data/bigrams.csv")
 ```
 
 ``` {r,echo=FALSE}
 print(kable(unique(df$topic),col.names = "Search Term"))
 ```
+
+## Bigrams 
+```{r,message = FALSE,warning=FALSE,eval=FALSE}
+df_assembly <- df %>% 
+  filter(topic == "Assembly")
+visualize_bigrams(df_assembly, abstract, "")
+```
+
 
 ## Bigrams
 ```{r final sankey, out.width="800px", echo = FALSE}

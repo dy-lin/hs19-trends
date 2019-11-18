@@ -45,8 +45,8 @@ data <- data %>%
 point_sf <- st_as_sf(data, coords = c("long", "lat"), crs = 4326)
 
 ```
-```{r worldmapdatamanipulation}
 
+```{r worldmapdatamanipulation,echo=FALSE}
 # Get world map data
 worldmap <- maps::map("world", fill = TRUE, plot = FALSE)
 
@@ -65,7 +65,7 @@ world_sf <- world_sf %>%
   }))
 #this step takes a while 
 #result <- st_within(point_sf, world_sf, sparse = FALSE)
-result=read.csv(here("workshop","data","result.csv"))
+result=read_csv("https://raw.githubusercontent.com/dy-lin/hs19-trends/master/workshop/data/result.csv")
 result=result[,-1]
 # Calculate the total count of each polygon
 # Store the result as a new column "Count" in world_sf
@@ -97,7 +97,7 @@ st_geometry(world_df) <- NULL
 world_data <- map_data("world")
 
 # Merge world_data and world_df and topicRanks
-world_data2=read.csv(here("workshop","data","world_data2.csv"))
+world_data2=read.csv("https://raw.githubusercontent.com/dy-lin/hs19-trends/master/workshop/data/world_data2.csv")
 #world_data2 <- world_data %>%
   #left_join(world_df, by = c("region"))%>%
  #left_join(topicRanks, by=c("region"))
@@ -123,7 +123,6 @@ ggplotly(pl,tooltip = "text")
 * Lets look at one continent in more detail. This is subsetting the data to just look at europe, there isn't anything about plottingin this box 
 ```{r}
 ###get only europe
-#world_sf=read.csv(here("workshop","data","world_sf.csv"))
 
 filt_bbox <- sf::st_bbox(c(xmin = -9, 
                            ymin = 36, 
@@ -163,6 +162,12 @@ points_europe=points_europe[,-c(6,7)]
 
 *Now we are plotting the number of papers that come out of each country in europe and also adding in the locations of the insitutions. 
 
+* You can load this data if the above chunk doesn't work 
+```{r}
+europe_data=read.csv("https://raw.githubusercontent.com/dy-lin/hs19-trends/master/workshop/data/europe_data.csv")
+points_europe=read.csv("https://raw.githubusercontent.com/dy-lin/hs19-trends/master/workshop/data/europe_points.csv")
+```
+
 ```{r}
 pl <- ggplot() + 
   geom_polygon(data = europe_data, aes(x = long, y = lat, group = group, fill = log(Count),text=paste(region,Count, sep=";"))) +
@@ -191,7 +196,7 @@ library(tidygraph)
 
 Load in the CSV, see what topic options we have available 
 ```{r}
-df=read.csv(here("workshop","data","bigrams.csv"))
+df=read.csv("https://raw.githubusercontent.com/dy-lin/hs19-trends/master/workshop/data/bigrams.csv")
 print(kable(unique(df$topic)))
 ```
 

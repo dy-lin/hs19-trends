@@ -3173,13 +3173,23 @@ library(broom)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-4">
 
+<p>Packages needed for plotting</p>
+
+<p><code>ggplot2</code>: package for data visualizations</p>
+
+<p><code>plotly</code>: makes interactive visualizations</p>
+
+<p><code>viridis</code>: good colour palatte for dealing with colourblindness and greyscale issues</p>
+
+</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-5">
+
 <p>There is a lot of code in the worksheet that describes how we got the data into the format we needed</p>
 
 <p>-We will do one global plot and one of Europe</p>
 
-</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-5">
+</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  class="smaller" id="mapping-6">
 
-<p>Here is an example of what the data looks like</p>
+<p>Here is an example of what the data looks like:</p>
 
 <table class = 'rmdtable'>
 <tr class="header">
@@ -3294,7 +3304,7 @@ library(broom)</pre>
 </tr>
 </table>
 
-</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-6">
+</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-7">
 
 <pre class = 'prettyprint lang-r'>pl &lt;- ggplot() +
 <b>  geom_polygon(data = world_data2, aes(x = long, y = lat,
@@ -3305,7 +3315,7 @@ library(broom)</pre>
 
 world_plotly=ggplotly(pl,tooltip = &quot;text&quot;)</pre>
 
-</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-7">
+</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-8">
 
 <pre class = 'prettyprint lang-r'>pl &lt;- ggplot() +
   geom_polygon(data = world_data2, aes(x = long, y = lat,
@@ -3316,11 +3326,11 @@ world_plotly=ggplotly(pl,tooltip = &quot;text&quot;)</pre>
 </b>
 world_plotly=ggplotly(pl,tooltip = &quot;text&quot;)</pre>
 
-</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-8">
+</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-9">
 
 <p><img src="https://dy-lin.github.io/hs19-trends/workshop/world_map_example.png" width="700px" style="display: block; margin: auto;" /></p>
 
-</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-9">
+</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-10">
 
 <p>If we want to look at certain countries we can do that too</p>
 
@@ -3330,29 +3340,115 @@ world_plotly=ggplotly(pl,tooltip = &quot;text&quot;)</pre>
 <li>plot will be set up similarily to the global one but we will add in new elements</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-10">
+</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  class="smaller" id="mapping-11">
+
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left"></th>
+<th align="right">X</th>
+<th align="left">region</th>
+<th align="right">Count</th>
+<th align="right">long</th>
+<th align="right">lat</th>
+<th align="right">group</th>
+<th align="right">order</th>
+<th align="left">subregion</th>
+</tr>
+<tr class="odd">
+<td align="left">67</td>
+<td align="right">67</td>
+<td align="left">Albania</td>
+<td align="right">0</td>
+<td align="right">19.96484</td>
+<td align="right">39.87227</td>
+<td align="right">6</td>
+<td align="right">836</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">68</td>
+<td align="right">68</td>
+<td align="left">Albania</td>
+<td align="right">0</td>
+<td align="right">19.85186</td>
+<td align="right">40.04356</td>
+<td align="right">6</td>
+<td align="right">837</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">69</td>
+<td align="right">69</td>
+<td align="left">Albania</td>
+<td align="right">0</td>
+<td align="right">19.48457</td>
+<td align="right">40.20996</td>
+<td align="right">6</td>
+<td align="right">838</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">70</td>
+<td align="right">70</td>
+<td align="left">Albania</td>
+<td align="right">0</td>
+<td align="right">19.39814</td>
+<td align="right">40.28486</td>
+<td align="right">6</td>
+<td align="right">839</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">71</td>
+<td align="right">71</td>
+<td align="left">Albania</td>
+<td align="right">0</td>
+<td align="right">19.36016</td>
+<td align="right">40.34771</td>
+<td align="right">6</td>
+<td align="right">840</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">72</td>
+<td align="right">72</td>
+<td align="left">Albania</td>
+<td align="right">0</td>
+<td align="right">19.32227</td>
+<td align="right">40.40708</td>
+<td align="right">6</td>
+<td align="right">841</td>
+<td align="left">NA</td>
+</tr>
+</table>
+
+</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-12">
 
 <pre class = 'prettyprint lang-r'><b> pl &lt;- ggplot() + 
   geom_polygon(data = europe_data, aes(x = long, y = lat, 
-  group = group, fill = log(Count),text=paste(region,Count, sep=&quot;;&quot;))) +
-</b>  geom_point(data=points_europe,aes(x=X,y=Y,text=str_wrap(affiliation,50)),
+  group = group, fill = log(Count),
+  text=paste(region,Count, sep=&quot;;&quot;))) +
+</b>  geom_point(data=points_europe,aes(x=X,y=Y,
+  text=str_wrap(affiliation,50)),
   alpha=0.5,size=0.5,colour=&quot;grey&quot;)+
   coord_fixed(1.3)+
   scale_fill_viridis()+
   theme_void()</pre>
 
-</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-11">
+</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-13">
 
 <pre class = 'prettyprint lang-r'> pl &lt;- ggplot() + 
   geom_polygon(data = europe_data, aes(x = long, y = lat, 
-  group = group, fill = log(Count),text=paste(region,Count, sep=&quot;;&quot;))) +
-<b>  geom_point(data=points_europe,aes(x=X,y=Y,text=str_wrap(affiliation,50)),
+  group = group, fill = log(Count),
+  text=paste(region,Count, sep=&quot;;&quot;))) +
+<b>  geom_point(data=points_europe,aes(x=X,y=Y,
+  text=str_wrap(affiliation,50)),
   alpha=0.5,size=0.5,colour=&quot;grey&quot;)+
 </b>  coord_fixed(1.3)+
   scale_fill_viridis()+
   theme_void()</pre>
 
-</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-12">
+</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-14">
 
 <p><img src="https://dy-lin.github.io/hs19-trends/workshop/europe_map_example.png" width="700px" style="display: block; margin: auto;" /></p>
 
@@ -3369,6 +3465,24 @@ world_plotly=ggplotly(pl,tooltip = &quot;text&quot;)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Bigrams</h2></hgroup><article  id="bigrams-2">
 
+<pre class = 'prettyprint lang-r'>library(tidyverse)
+library(tidytext)
+library(tm)
+library(widyr)
+library(igraph)
+library(ggplot2)
+library(ggraph)
+library(readr)
+library(tidygraph)</pre>
+
+</article></slide><slide class=""><hgroup><h2>Bigrams</h2></hgroup><article  id="bigrams-3">
+
+<p><code>ggraph</code>: visualizations for network structures</p>
+
+<p><code>ggplot2</code>: package for data visualizations</p>
+
+</article></slide><slide class=""><hgroup><h2>Bigrams</h2></hgroup><article  id="bigrams-4">
+
 <p><strong>visualize_bigrams</strong>: extracts bigrams from a text field, calculates frequency of bigrams, and creates a bigram plot to visualize relationships between words</p>
 
 <ul>
@@ -3378,16 +3492,18 @@ world_plotly=ggplotly(pl,tooltip = &quot;text&quot;)</pre>
 
 <pre class = 'prettyprint lang-r'>visualize_bigrams &lt;- function(df_name, textfield, topic_title)</pre>
 
-</article></slide><slide class=""><hgroup><h2>Bigrams</h2></hgroup><article  id="bigrams-3">
+</article></slide><slide class=""><hgroup><h2>Bigrams</h2></hgroup><article  id="bigrams-5">
 
 <p>In the worksheet, you will see a lot of code that just talks about the formatting of the data. If you are interested in that look into it, but we’re just covering the plotting</p>
 
-</article></slide><slide class=""><hgroup><h2>Bigrams</h2></hgroup><article  id="bigrams-4">
+</article></slide><slide class=""><hgroup><h2>Bigrams</h2></hgroup><article  id="bigrams-6">
 
 <pre class = 'prettyprint lang-r'>pl &lt;- graph_hold %&gt;%
       ggraph(layout = &quot;fr&quot;) +
-      geom_edge_link(aes(edge_alpha = Edge_Frequency), show.legend = TRUE) +
-      geom_node_point(aes(color = Term_Frequency, size = Term_Frequency), alpha = 0.7) +
+      geom_edge_link(aes(edge_alpha = Edge_Frequency), 
+      show.legend = TRUE) +
+      geom_node_point(aes(color = Term_Frequency, 
+      size = Term_Frequency), alpha = 0.7) +
       scale_fill_viridis_c() +
       geom_node_text(aes(label = name), repel = TRUE) +
       scale_color_viridis_c(direction = -1) +
@@ -3396,7 +3512,7 @@ world_plotly=ggplotly(pl,tooltip = &quot;text&quot;)</pre>
       labs(title = quo_name(topic_title)) +
       theme(plot.title = element_text(size = 26, face = &quot;bold&quot;))</pre>
 
-</article></slide><slide class=""><hgroup><h2>Bigrams</h2></hgroup><article  class="vcenter flexbox" id="bigrams-5">
+</article></slide><slide class=""><hgroup><h2>Bigrams</h2></hgroup><article  class="vcenter flexbox" id="bigrams-7">
 
 <pre >## 
 ## 
@@ -3413,7 +3529,13 @@ world_plotly=ggplotly(pl,tooltip = &quot;text&quot;)</pre>
 ## |Structural Prediction |
 ## |Variant Calling       |</pre>
 
-</article></slide><slide class=""><hgroup><h2>Bigrams</h2></hgroup><article  id="bigrams-6">
+</article></slide><slide class=""><hgroup><h2>Bigrams</h2></hgroup><article  id="bigrams-8">
+
+<pre class = 'prettyprint lang-r'>df_assembly &lt;- df %&gt;% 
+  filter(topic == &quot;Assembly&quot;)
+visualize_bigrams(df_assembly, abstract, &quot;&quot;)</pre>
+
+</article></slide><slide class=""><hgroup><h2>Bigrams</h2></hgroup><article  id="bigrams-9">
 
 <p><img src="https://dy-lin.github.io/hs19-trends/figures/bigrams_assembly.png" width="800px" /></p></article></slide>
 
