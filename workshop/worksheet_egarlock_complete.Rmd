@@ -251,8 +251,9 @@ visualize_bigrams <- function(df_name, textfield, topic_title){
 ```
 Now that we have the function made, decide on a topic and make a bigram digram for those topics 
 ```{r}
+
 df_assembly <- df %>% 
-  filter(topic == "assembly")
+  filter(topic == "Assembly")
 visualize_bigrams(df_assembly, abstract, "")
 ```
 
