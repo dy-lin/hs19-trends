@@ -3187,7 +3187,7 @@ library(broom)</pre>
 
 <p>-We will do one global plot and one of Europe</p>
 
-</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  class="smaller" id="mapping-6">
+</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-6" class="smaller">
 
 <p>Here is an example of what the data looks like:</p>
 
@@ -3308,7 +3308,7 @@ library(broom)</pre>
 
 <pre class = 'prettyprint lang-r'>pl &lt;- ggplot() +
 <b>  geom_polygon(data = world_data2, aes(x = long, y = lat,
-  group = group,fill = log(Count),text=Count)) +
+  group = group,fill = log(Count),text=Count),colour=&quot;lightgrey&quot;) +
 </b>  coord_fixed(1.3)+
   scale_fill_viridis()+
   theme_void()
@@ -3319,12 +3319,11 @@ world_plotly=ggplotly(pl,tooltip = &quot;text&quot;)</pre>
 
 <pre class = 'prettyprint lang-r'>pl &lt;- ggplot() +
   geom_polygon(data = world_data2, aes(x = long, y = lat,
-  group = group,fill = log(Count),text=Count)) +
+  group = group,fill = log(Count),text=Count),colour=&quot;lightgrey&quot;) +
 <b>  coord_fixed(1.3)+
   scale_fill_viridis()+
   theme_void()
-</b>
-world_plotly=ggplotly(pl,tooltip = &quot;text&quot;)</pre>
+</b>world_plotly=ggplotly(pl,tooltip = &quot;text&quot;)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-9">
 
@@ -3340,7 +3339,7 @@ world_plotly=ggplotly(pl,tooltip = &quot;text&quot;)</pre>
 <li>plot will be set up similarily to the global one but we will add in new elements</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  class="smaller" id="mapping-11">
+</article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-11" class="smaller">
 
 <table class = 'rmdtable'>
 <tr class="header">
@@ -3512,7 +3511,7 @@ library(tidygraph)</pre>
       labs(title = quo_name(topic_title)) +
       theme(plot.title = element_text(size = 26, face = &quot;bold&quot;))</pre>
 
-</article></slide><slide class=""><hgroup><h2>Bigrams</h2></hgroup><article  class="vcenter flexbox" id="bigrams-7">
+</article></slide><slide class=""><hgroup><h2>Bigrams</h2></hgroup><article  id="bigrams-7" class="vcenter flexbox">
 
 <pre >## 
 ## 
