@@ -43,7 +43,7 @@ library(knitr)
 library(broom)
 ```
 ## Mapping 
-There is a lot of code in the worksheet that describes how we got the data into the format we needed 
+There is a lot of code in the worksheet that describes how we got the data into the format we needed
 
 -We will do one global plot and one of Europe 
 
