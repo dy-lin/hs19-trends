@@ -1,5 +1,5 @@
 ---
-title: "Emma Slides"
+title: "Visualization Maps and Bigrams"
 author: "Emma Garlock"
 date: "11/17/2019"
 output:
@@ -18,6 +18,7 @@ We want to look at several trends
 - Most Common topic per country 
 - Number of papers per country 
 
+## Mapping
 ```{r, out.width="700px", echo = FALSE, fig.align = 'center'}
 knitr::include_graphics("https://dy-lin.github.io/hs19-trends/workshop/Map_example.png")
 ```
@@ -85,6 +86,10 @@ pl <- ggplot() +
 world_plotly=ggplotly(pl,tooltip = "text")
 ```
 
+## Mapping 
+```{r, out.width="700px", echo = FALSE, fig.align = 'center'}
+knitr::include_graphics("https://dy-lin.github.io/hs19-trends/workshop/world_map_example.png")
+```
 
 ## Mapping 
 ```{r,include=FALSE}
@@ -126,6 +131,14 @@ If we want to look at certain countries we can do that too
   scale_fill_viridis()+
   theme_void()
 ```
+
+## Mapping 
+
+```{r, out.width="700px", echo = FALSE, fig.align = 'center'}
+knitr::include_graphics("https://dy-lin.github.io/hs19-trends/workshop/europe_map_example.png")
+```
+
+
 # Bigrams 
 
 ## Bigrams 
