@@ -169,6 +169,7 @@ points_europe=read.csv("https://raw.githubusercontent.com/dy-lin/hs19-trends/mas
 ```
 
 ```{r}
+#getting an error in this box
 pl <- ggplot() + 
   geom_polygon(data = europe_data, aes(x = long, y = lat, group = group, fill = log(Count),text=paste(region,Count, sep=";"))) +
   geom_point(data=points_europe,aes(x=X,y=Y,text=str_wrap(affiliation,50)),alpha=0.5,size=0.5,colour="grey")+
