@@ -1,0 +1,259 @@
+---
+title: "worksheet_egarlock_complete"
+author: "Emma Garlock"
+date: "11/17/2019"
+output: html_document
+---
+
+## Geographic Mapping 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width=12, fig.height=8)
+library(ggplot2)
+library(dplyr)
+library(plotly)
+library(here)
+library(ggmap)
+library(viridis)
+library(rgeos)
+library(maptools)
+library(maps)
+library(sf)
+library(readr)
+library(tidyverse)
+library(knitr)
+library(broom)
+select <- dplyr::select
+```
+
+## Loading in the coordinates 
+*You do not actually have to run this, all of this is just here so you know how to set it up in the future. You can just skip down to ## Map Plotting 
+*To see where the coordinates come from see: https://github.com/dy-lin/hs19-trends/blob/master/R/LatLongScript.Rmd
+
+
+```{r readData,include=FALSE}
+
+data <- read_csv(here("data","affiliations_lat_long.csv"))
+data <- data %>% 
+       select(-X1) %>% distinct() %>%
+        drop_na() %>%
+        separate(latlong,c("lat","long"),sep=",") %>%
+        mutate_at(c("lat","long"),
+                  function(str) as.numeric(unlist(regmatches(str,gregexpr("(?>-)*[[:digit:]]+\\.*[[:digit:]]*",str, perl=TRUE))))
+                  )
+# Convert to simple feature object
+point_sf <- st_as_sf(data, coords = c("long", "lat"), crs = 4326)
+
+```
+```{r worldmapdatamanipulation}
+
+# Get world map data
+worldmap <- maps::map("world", fill = TRUE, plot = FALSE)
+
+# Convert world to sp class
+IDs <- sapply(strsplit(worldmap$names, ":"), "[", 1L)
+world_sp <- map2SpatialPolygons(worldmap, IDs = IDs, 
+                                proj4string = CRS("+proj=longlat +datum=WGS84"))
+
+# Convert world_sp to simple feature object
+world_sf <- st_as_sf(world_sp)
+
+# Add country ID
+world_sf <- world_sf %>%
+  mutate(region = map_chr(1:length(world_sp@polygons), function(i){
+    world_sp@polygons[[i]]@ID
+  }))
+#this step takes a while 
+#result <- st_within(point_sf, world_sf, sparse = FALSE)
+result=read.csv(here("workshop","data","result.csv"))
+result=result[,-1]
+# Calculate the total count of each polygon
+# Store the result as a new column "Count" in world_sf
+world_sf <- world_sf %>%
+  mutate(Count = apply(result, 2, sum))
+
+# most popular topic per country
+resultWithTopic <- cbind(point_sf$topic,result)
+topicSummary <- resultWithTopic %>% as.data.frame(stringsAsFactors=FALSE) %>% 
+        group_by(V1) %>% 
+        dplyr::summarise_all(function(x)sum(x != "FALSE"))
+names(topicSummary) <- c("topic",world_sf$region)   
+
+topicSummary <- topicSummary %>% gather(region,count,-topic)
+topicRanks <- topicSummary %>% 
+      filter(count != 0) %>%
+        group_by(region) %>% 
+      summarise(topicMax=list(topic[count==max(count)])) %>%
+      rowwise() %>%
+      mutate(topicDisplay=ifelse(length(unlist(topicMax))>1,
+                                 "multiple",topicMax),
+             text = paste(unique(unlist(topicMax)),collapse = ", "))
+
+# Convert world_sf to a data frame world_df 
+world_df <- world_sf
+st_geometry(world_df) <- NULL
+
+# Get world data frame
+world_data <- map_data("world")
+
+# Merge world_data and world_df and topicRanks
+world_data2=read.csv(here("workshop","data","world_data2.csv"))
+#world_data2 <- world_data %>%
+  #left_join(world_df, by = c("region"))%>%
+ #left_join(topicRanks, by=c("region"))
+#world_data2=data.frame(lapply(world_data2,as.character),stringsAsFactors=FALSE)
+```
+
+## Map Plotting 
+*This will show us a map of the whole world, with the countries coloured based on their most common topic of study 
+
+```{r worldmap}
+pl <- ggplot() + 
+  geom_polygon(data = world_data2, aes(x = long, y = lat, group = group, fill = log(Count),text=Count)) +
+  #geom_point(data=data,aes(x = long, y = lat),alpha=0.5,size=0.5,colour="grey")+
+  coord_fixed(1.3)+
+  scale_fill_viridis()+
+  theme_void()
+
+ggplotly(pl,tooltip = "text")
+
+## R Markdown
+```
+
+* Lets look at one continent in more detail. This is subsetting the data to just look at europe, there isn't anything about plottingin this box 
+```{r}
+###get only europe
+#world_sf=read.csv(here("workshop","data","world_sf.csv"))
+
+filt_bbox <- sf::st_bbox(c(xmin = -9, 
+                           ymin = 36, 
+                           xmax = 42.5, 
+                           ymax = 70.1), 
+                         crs = st_crs(4326)) %>% 
+  sf::st_as_sfc(.)
+
+
+find_data <- sf::st_within(world_sf, filt_bbox)
+#> although coordinates are longitude/latitude, st_within assumes that they are planar
+europe_sf <- world_sf[which(lengths(find_data) != 0), ]
+
+europe_result <- st_within(point_sf, europe_sf, sparse = FALSE)
+
+# Calculate the total count of each polygon
+# Store the result as a new column "Count" in world_sf
+europe_sf <- europe_sf %>%
+  mutate(Count = apply(europe_result, 2, sum))
+
+# Convert world_sf to a data frame world_df 
+europe_df <- europe_sf
+st_geometry(europe_df) <- NULL
+
+# Get world data frame
+world_data <- map_data("world")
+
+# Merge world_data and world_df
+europe_data <- europe_df %>%
+  left_join(world_data, by = c("region"))
+
+ind <- sf::st_intersects(point_sf, europe_sf)
+points_europe<-  point_sf[which(lengths(ind) != 0), ]
+points_europe <- cbind(points_europe,st_coordinates(points_europe))
+points_europe=points_europe[,-c(6,7)]
+```
+
+*Now we are plotting the number of papers that come out of each country in europe and also adding in the locations of the insitutions. 
+
+```{r}
+pl <- ggplot() + 
+  geom_polygon(data = europe_data, aes(x = long, y = lat, group = group, fill = log(Count),text=paste(region,Count, sep=";"))) +
+  geom_point(data=points_europe,aes(x=X,y=Y,text=str_wrap(affiliation,50)),alpha=0.5,size=0.5,colour="grey")+
+  coord_fixed(1.3)+
+  scale_fill_viridis()+
+  theme_void()
+
+ggplotly(pl,tooltip="text")
+```
+
+## Bigrams 
+
+Let's load our packages 
+```{r Load Dependencies, results='hide'}
+library(tidyverse)
+library(tidytext)
+library(tm)
+library(widyr)
+library(igraph)
+library(ggplot2)
+library(ggraph)
+library(readr)
+library(tidygraph)
+```
+
+Load in the CSV, see what topic options we have available 
+```{r}
+df=read.csv(here("workshop","data","bigrams.csv"))
+print(kable(unique(df$topic)))
+```
+
+*This takes the bigram frequency determination and plotting and wraps it in one function, visualize_bigrams().The plotting starts on line 228
+
+```{r}
+visualize_bigrams <- function(df_name, textfield, topic_title){
+  
+    # Create frequencies of bigrams
+    df_cleaned <- df_name %>% 
+      mutate(textfield_clean = removeWords(gsub("[^A-Za-z0-9 ]", "", {{textfield}}), stop_words$word))
+    
+    df_bigrams <- df_cleaned %>%
+      unnest_tokens(bigrams, textfield_clean, token = "ngrams", n = 2)
+    
+    df_freq <- as.data.frame(table(df_bigrams$bigrams)) %>% 
+      arrange(desc(Freq))
+    
+    # Visualizations
+    df_top_bigrams <- df_freq %>%
+      top_n(100, Freq) %>% 
+      separate(Var1, c("word1", "word2"))
+    
+    top_bigram_words <- c(df_top_bigrams$word1, df_top_bigrams$word2) %>%
+      unique()
+    
+    word_list <- df_cleaned %>%
+      unnest_tokens(words, textfield_clean, token = "ngrams", n = 1) 
+    
+    df_word_list <- as.data.frame(table(word_list$words)) %>% 
+      arrange(desc(Freq)) %>%
+      filter(Var1 %in% top_bigram_words)
+    
+    names(df_word_list)[2] <- "Term_Frequency"
+    names(df_top_bigrams)[3] <- "Edge_Frequency"
+    
+    graph_from_data_frame(vertices =  df_word_list, d = df_top_bigrams) -> graph_hold
+    
+     pl <- graph_hold %>%
+      ggraph(layout = "fr") +
+      geom_edge_link(aes(edge_colour = log(Edge_Frequency)), show.legend = TRUE) +
+      geom_node_point(aes(color = Term_Frequency, size = Term_Frequency), alpha = 0.7) +
+      scale_fill_viridis_c() +
+      scale_edge_color_viridis(direction=-1)+
+      geom_node_text(aes(label = name), repel = TRUE) +
+      scale_color_viridis_c(direction = -1) +
+      theme_void() +
+      guides(size=FALSE) +
+      labs(title = quo_name(topic_title)) +
+      theme(plot.title = element_text(size = 26, face = "bold"))
+    
+    ggsave(pl,filename = paste0("../figures/", "bigrams_", str_to_lower(str_replace(topic_title, "\\s", "_")), ".png")
+           ,width = 12
+           ,height = 8)
+    pl
+}
+```
+Now that we have the function made, decide on a topic and make a bigram digram for those topics 
+```{r}
+df_assembly <- df %>% 
+  filter(topic == "assembly")
+visualize_bigrams(df_assembly, abstract, "")
+```
+
+
