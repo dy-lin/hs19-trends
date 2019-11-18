@@ -4267,10 +4267,8 @@ library(tidygraph)</pre>
 
 <pre class = 'prettyprint lang-r'>pl &lt;- graph_hold %&gt;%
       ggraph(layout = &quot;fr&quot;) +
-      geom_edge_link(aes(edge_alpha = Edge_Frequency), 
-      show.legend = TRUE) +
-      geom_node_point(aes(color = Term_Frequency, 
-      size = Term_Frequency), alpha = 0.7) +
+      geom_edge_link(aes(edge_alpha = Edge_Frequency), show.legend = TRUE) +
+      geom_node_point(aes(color = Term_Frequency, size = Term_Frequency), alpha = 0.7) +
       scale_fill_viridis_c() +
       geom_node_text(aes(label = name), repel = TRUE) +
       scale_color_viridis_c(direction = -1) +

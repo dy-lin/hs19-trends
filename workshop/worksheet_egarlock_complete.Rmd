@@ -238,22 +238,20 @@ visualize_bigrams <- function(df_name, textfield, topic_title){
     
     graph_from_data_frame(vertices =  df_word_list, d = df_top_bigrams) -> graph_hold
     
-     pl <- graph_hold %>%
+       pl <- graph_hold %>%
       ggraph(layout = "fr") +
-      geom_edge_link(aes(edge_colour = log(Edge_Frequency)), show.legend = TRUE) +
+      geom_edge_link(aes(edge_alpha = Edge_Frequency), show.legend = TRUE) +
       geom_node_point(aes(color = Term_Frequency, size = Term_Frequency), alpha = 0.7) +
       scale_fill_viridis_c() +
-      scale_edge_color_viridis(direction=-1)+
       geom_node_text(aes(label = name), repel = TRUE) +
       scale_color_viridis_c(direction = -1) +
       theme_void() +
       guides(size=FALSE) +
       labs(title = quo_name(topic_title)) +
       theme(plot.title = element_text(size = 26, face = "bold"))
-    
-    ggsave(pl,filename = paste0("../figures/", "bigrams_", str_to_lower(str_replace(topic_title, "\\s", "_")), ".png")
-           ,width = 12
-           ,height = 8)
+    #ggsave(pl,filename = paste0("../figures/", "bigrams_", str_to_lower(str_replace(topic_title, "\\s", "_")), ".png")
+           #,width = 12
+           #,height = 8)
     pl
 }
 ```
