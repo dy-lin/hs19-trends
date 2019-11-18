@@ -594,7 +594,20 @@ pl <- ggplot() +
 
 world_plotly=ggplotly(pl,tooltip = "text")
 ```
-## Mapping
+## Mapping{.smaller}
+
+#### Usage 
+__geom_polygon__:mapping = NULL, data = NULL, stat = "identity",
+  position = "identity", rule = "evenodd", ..., na.rm = FALSE,
+  show.legend = NA, inherit.aes = TRUE)
+
+#### Description 
+Polygons are very similar to paths (as drawn by geom_path()) except that the start and end points are connected and the inside is coloured by fill. The group aesthetic determines which cases are connected together into a polygon.
+
+#### Arguments 
+`group`: # By default, the group is set to the interaction of all discrete variables in the plot. This often partitions the data correctly, but when it does not, or when no discrete variable is used in the plot, you will need to explicitly define the grouping structure, by mapping group to a variable that has a different value for each group.
+
+## Mapping 
 
 ```{r,message = FALSE, warning = FALSE,eval=FALSE}
 pl <- ggplot() +
@@ -783,6 +796,44 @@ pl <- graph_hold %>%
       labs(title = quo_name(topic_title)) +
       theme(plot.title = element_text(size = 26, face = "bold"))
 ```
+## Bigrams {.smaller}
+
+#### Usage 
+__geom_edge_link__(mapping = NULL, data = get_edges("short"),
+  position = "identity", arrow = NULL, n = 100, lineend = "butt",
+  linejoin = "round", linemitre = 1, label_colour = "black",
+  label_alpha = 1, label_parse = FALSE, check_overlap = FALSE,
+  angle_calc = "rot", force_flip = TRUE, label_dodge = NULL,
+  label_push = NULL, show.legend = NA, ...)
+#### Description 
+This geom draws edges in the simplest way - as straight lines between the start and end nodes. Not much more to say about that...
+
+#### Arguments 
+We don't use any arguments in this case, just change some of the aes 
+
+## Bigrams {.smaller}
+#### Usage 
+__ggraph__(graph, layout = "auto", ...)
+
+#### Description 
+This function is the equivalent of `ggplot2::ggplot()` in `ggplot2`. It takes care of setting up the plot object along with creating the layout for the plot based on the graph and the specification passed in. Alternatively a layout can be prepared in advance using create_layout and passed as the data argument.
+
+####Arguments 
+`layout`:The type of layout to create. Either a valid string, a function, a matrix, or a data.frame
+
+- fr is within the igraph layout options for constucting node diagrams 
+
+## Bigrams {.smaller}
+
+#### Usage 
+__geom_node_point__: geom_node_point(mapping = NULL, data = NULL, position = "identity",
+  show.legend = NA, ...)
+  
+#### Description 
+This geom is equivalent in functionality to `ggplot2::geom_point()` and allows for simple plotting of nodes in different shapes, colours and sizes.
+
+#### Arguments 
+We don't use any arguments in this case, just change some of the aes 
 
 ## Bigrams {.vcenter .flexbox}
 ```{r, include=FALSE}
