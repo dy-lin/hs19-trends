@@ -9,6 +9,7 @@
 
 
 
+  <meta name="date" content="2019-11-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -3132,7 +3133,7 @@ slide:not(.current) .plotly.html-widget{
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">14/11/2019</p>
+            <p style="margin-top: 6px; margin-left: -2px;">November 18, 2019</p>
           </hgroup>
   </slide>
 
@@ -3257,24 +3258,24 @@ knitr::include_graphics("https://dy-lin.github.io/hs19-trends/figures/overview.p
 <p><strong>Sequencing in the Public Library of Science (PLoS)</strong></p>
 
 <pre >## # A tibble: 10 x 9
-##    doi    journal  publisher  author1  affiliation  title  abstract  topic  Year
-##    &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt; &lt;dbl&gt;
-##  1 10.13… PLoS ONE Public Li… Zaragoz… Genetics &amp; … Mitoc… Mutation… sang…  2010
-##  2 10.13… PLoS ONE Public Li… Ji, Hez… National HI… HIV D… Backgrou… sang…  2010
-##  3 10.13… PLOS ONE Public Li… Landria… Department … Inher… Spinocer… sang…  2017
-##  4 10.13… PLOS ONE Public Li… Guinois… INSERM U966… Deep … Hepatiti… sang…  2017
-##  5 10.13… PLOS ONE Public Li… Iyer, S… Department … Compa… Massivel… sang…  2015
-##  6 10.13… PLOS ONE Public Li… Rebolle… Department … Compa… The refe… sang…  2015
-##  7 10.13… PLOS ONE Public Li… Vivien,… Swiss Centr… Next-… Aquatic … sang…  2016
-##  8 10.13… PLOS ONE Public Li… Pandey,… AIT Austria… MutAi… Traditio… sang…  2016
-##  9 10.13… PLoS ONE Public Li… Lopez-R… Laboratorio… Compa… Backgrou… sang…  2012
-## 10 10.13… PLoS ONE Public Li… Shokral… Biodiversit… Pyros… DNA barc… sang…  2011</pre>
+##    doi    journal  publisher author1 affiliation title abstract topic  Year
+##    &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;
+##  1 10.13… PLoS ONE Public L… Zarago… Genetics &amp;… Mito… Mutatio… sang…  2010
+##  2 10.13… PLoS ONE Public L… Ji, He… National H… HIV … Backgro… sang…  2010
+##  3 10.13… PLOS ONE Public L… Landri… Department… Inhe… Spinoce… sang…  2017
+##  4 10.13… PLOS ONE Public L… Guinoi… INSERM U96… Deep… Hepatit… sang…  2017
+##  5 10.13… PLOS ONE Public L… Iyer, … Department… Comp… Massive… sang…  2015
+##  6 10.13… PLOS ONE Public L… Reboll… Department… Comp… The ref… sang…  2015
+##  7 10.13… PLOS ONE Public L… Vivien… Swiss Cent… Next… Aquatic… sang…  2016
+##  8 10.13… PLOS ONE Public L… Pandey… AIT Austri… MutA… Traditi… sang…  2016
+##  9 10.13… PLoS ONE Public L… Lopez-… Laboratori… Comp… Backgro… sang…  2012
+## 10 10.13… PLoS ONE Public L… Shokra… Biodiversi… Pyro… DNA bar… sang…  2011</pre>
 
-To follow along with some live-coding, download this worksheet:
+To follow along with some live-coding, download these worksheets:
 
 <center>
 
-<a href='http://tiny.cc/rladies-ws1' title=''>http://tiny.cc/rladies-ws1</a>
+<a href='http://tiny.cc/rladies-ws1' title=''>http://tiny.cc/rladies-ws1</a><br/><a href='http://tiny.cc/rladies-ws2' title=''>http://tiny.cc/rladies-ws2</a>
 
 </center>
 
@@ -3689,7 +3690,7 @@ animate(p, nframes = 100, fps = 5, end_pause = 10)</pre>
 </article></slide><slide class=""><hgroup><h2>What is a Sankey Diagram?</h2></hgroup><article  class="vcenter flexbox smaller" id="what-is-a-sankey-diagram">
 
 <ul>
-<li><em>Sankey Diagram</em>: a type of flow diagram where the width of the arrows is proportional to the flow rate <img src="https://github.com/dy-lin/hs19-trends/raw/master/workshop/sankey_example.png" width="450px" style="display: block; margin: auto;" />
+<li><strong>Sankey Diagram</strong>: a type of flow diagram where the width of the arrows is proportional to the flow rate <img src="https://github.com/dy-lin/hs19-trends/raw/master/workshop/sankey_example.png" width="450px" style="display: block; margin: auto;" />
 
 <center>
 
@@ -3870,9 +3871,23 @@ grid.draw(sankey)</pre>
 <li>Number of papers per country</li>
 </ul>
 
+<br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> If you still haven’t downloaded the live-coding worksheet for this section:
+
+<center>
+
+<a href='http://tiny.cc/rladies-ws2' title=''>http://tiny.cc/rladies-ws2</a>
+
+</center>
+
 </article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-2">
 
-<p><img src="https://dy-lin.github.io/hs19-trends/workshop/Map_example.png" width="700px" style="display: block; margin: auto;" /></p>
+<img src="https://dy-lin.github.io/hs19-trends/workshop/Map_example.png" width="700px" style="display: block; margin: auto;" />
+
+<center>
+
+<font size="3">Source: <a href='https://dy-lin.github.io/hs19-trends/R/visualization_map.html' title=''>https://dy-lin.github.io/hs19-trends/R/visualization_map.html</a></font>
+
+</center>
 
 </article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-3">
 
@@ -3907,7 +3922,9 @@ library(broom)</pre>
 
 <p>There is a lot of code in the worksheet that describes how we got the data into the format we needed</p>
 
-<p>-We will do one global plot and one of Europe</p>
+<ul>
+<li>We will do one global plot and one of Europe</li>
+</ul>
 
 </article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  class="smaller" id="mapping-6">
 
@@ -4050,7 +4067,13 @@ world_plotly=ggplotly(pl,tooltip = &quot;text&quot;)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-9">
 
-<p><img src="https://dy-lin.github.io/hs19-trends/workshop/world_map_example.png" width="700px" style="display: block; margin: auto;" /></p>
+<img src="https://dy-lin.github.io/hs19-trends/workshop/world_map_example.png" width="700px" style="display: block; margin: auto;" />
+
+<center>
+
+<font size="3">Source: <a href='https://dy-lin.github.io/hs19-trends/R/visualization_map.html' title=''>https://dy-lin.github.io/hs19-trends/R/visualization_map.html</a></font>
+
+</center>
 
 </article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-10">
 
@@ -4172,7 +4195,13 @@ world_plotly=ggplotly(pl,tooltip = &quot;text&quot;)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Mapping</h2></hgroup><article  id="mapping-14">
 
-<p><img src="https://dy-lin.github.io/hs19-trends/workshop/europe_map_example.png" width="700px" style="display: block; margin: auto;" /></p>
+<img src="https://dy-lin.github.io/hs19-trends/workshop/europe_map_example.png" width="700px" style="display: block; margin: auto;" />
+
+<center>
+
+<font size="3">Source: <a href='https://dy-lin.github.io/hs19-trends/R/visualization_map.html' title=''>https://dy-lin.github.io/hs19-trends/R/visualization_map.html</a></font>
+
+</center>
 
 </article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Bigrams</h2></hgroup><article  id="bigrams">
 
@@ -4259,11 +4288,39 @@ visualize_bigrams(df_assembly, abstract, &quot;&quot;)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Bigrams</h2></hgroup><article  id="bigrams-9">
 
-<p><img src="https://dy-lin.github.io/hs19-trends/figures/bigrams_assembly.png" width="800px" /></p>
+<img src="https://dy-lin.github.io/hs19-trends/figures/bigrams_assembly.png" width="700px" />
+
+<center>
+
+<font size="3">Source: <a href='https://dy-lin.github.io/hs19-trends/R/bigram_relationships.html' title=''>https://dy-lin.github.io/hs19-trends/R/bigram_relationships.html</a></font>
+
+</center>
 
 </article></slide><slide class=""><hgroup><h2>GitHub</h2></hgroup><article  id="github">
 
-<p>For more information regarding the Hackseq project: <a href='https://github.com/dy-lin/hs19-trends' title=''>https://github.com/dy-lin/hs19-trends</a></p></article></slide>
+<p>For more information regarding the Hackseq project: <a href='https://github.com/dy-lin/hs19-trends' title=''>https://github.com/dy-lin/hs19-trends</a></p>
+
+<p><img src="https://github.com/dy-lin/hs19-trends/raw/master/workshop/both_logos.png" width="700px" style="display: block; margin: auto;" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Acknowledgements</h2></hgroup><article  id="acknowledgements">
+
+<ul>
+<li>Jasmine Lai</li>
+<li>Raissa Philibert</li>
+<li>Lucia Darrow</li>
+<li>Shannon Lo</li>
+<li>Morgana Xu</li>
+<li>Elliot YKF</li>
+<li>Swapna Menon</li>
+</ul>
+
+<p><br/></p>
+
+<center>
+
+<font size="6"><strong>Thank you RLadies and Dialpad for hosting us!</strong></font>
+
+</center></article></slide>
 
 
   <slide class="backdrop"></slide>

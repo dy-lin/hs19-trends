@@ -1,7 +1,7 @@
 ---
 title: 'hackseq: Trends in Bioinformatics'
 author: "Diana Lin and Emma Garlock"
-date: "14/11/2019"
+date: "November 18, 2019"
 output:
   ioslides_presentation:
     logo: R-LadiesGlobal.png
@@ -110,8 +110,8 @@ __Sequencing in the Public Library of Science (PLoS)__
 ```{r, echo = FALSE}
 head(seq_spec, 10L)
 ```
-To follow along with some live-coding, download this worksheet:
-<center>http://tiny.cc/rladies-ws1</center><!--or
+To follow along with some live-coding, download these worksheets:
+<center>http://tiny.cc/rladies-ws1<br/>http://tiny.cc/rladies-ws2</center><!--or
 https://github.com/dy-lin/hs19-trends/blob/master/workshop/worksheet_dlin.Rmd-->
 
 # _Racing_ Bar Graph 
@@ -394,7 +394,7 @@ knitr::include_graphics("https://github.com/dy-lin/hs19-trends/raw/master/figure
 # Sankey Diagrams
 
 ## What is a Sankey Diagram? {.vcenter .flexbox .smaller}
-* _Sankey Diagram_: a type of flow diagram where the width of the arrows is proportional to the flow rate
+* __Sankey Diagram__: a type of flow diagram where the width of the arrows is proportional to the flow rate
 ```{r sankey example, out.width="450px", echo = FALSE, fig.align = 'center'}
 knitr::include_graphics("https://github.com/dy-lin/hs19-trends/raw/master/workshop/sankey_example.png")
 ```
@@ -517,10 +517,22 @@ We want to look at several trends
 - Most Common topic per country 
 - Number of papers per country 
 
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+If you still haven't downloaded the live-coding worksheet for this section:
+<center>http://tiny.cc/rladies-ws2</center>
+
 ## Mapping
 ```{r, out.width="700px", echo = FALSE, fig.align = 'center'}
 knitr::include_graphics("https://dy-lin.github.io/hs19-trends/workshop/Map_example.png")
 ```
+<center><font size="3">Source: https://dy-lin.github.io/hs19-trends/R/visualization_map.html</font></center>
 
 ## Mapping 
 Here are all the packages we need to format the data and do the plotting 
@@ -553,7 +565,9 @@ Packages needed for plotting
 ## Mapping 
 There is a lot of code in the worksheet that describes how we got the data into the format we needed
 
--We will do one global plot and one of Europe 
+* We will do one global plot and one of Europe 
+
+
 
 ## Mapping {.smaller}
 Here is an example of what the data looks like:
@@ -599,6 +613,7 @@ world_plotly=ggplotly(pl,tooltip = "text")
 ```{r, out.width="700px", echo = FALSE, fig.align = 'center'}
 knitr::include_graphics("https://dy-lin.github.io/hs19-trends/workshop/world_map_example.png")
 ```
+<center><font size="3">Source: https://dy-lin.github.io/hs19-trends/R/visualization_map.html</font></center>
 
 ## Mapping 
 ```{r,include=FALSE}
@@ -655,6 +670,7 @@ europe_data[67:72,]%>%kable()
 ```{r, out.width="700px", echo = FALSE, fig.align = 'center'}
 knitr::include_graphics("https://dy-lin.github.io/hs19-trends/workshop/europe_map_example.png")
 ```
+<center><font size="3">Source: https://dy-lin.github.io/hs19-trends/R/visualization_map.html</font></center>
 
 
 # Bigrams 
@@ -786,12 +802,30 @@ visualize_bigrams(df_assembly, abstract, "")
 
 
 ## Bigrams
-```{r bigrams final, out.width="800px", echo = FALSE}
+```{r bigrams final, out.width="700px", echo = FALSE}
 knitr::include_graphics("https://dy-lin.github.io/hs19-trends/figures/bigrams_assembly.png")
 ```
-
+<center><font size="3">Source: https://dy-lin.github.io/hs19-trends/R/bigram_relationships.html</font></center>
 
 
 ## GitHub
 For more information regarding the Hackseq project:
 https://github.com/dy-lin/hs19-trends
+
+```{r , echo = FALSE, out.width = "700px", fig.align='center' }
+knitr::include_graphics("https://github.com/dy-lin/hs19-trends/raw/master/workshop/both_logos.png")
+```
+
+## Acknowledgements
+
+* Jasmine Lai
+* Raissa Philibert
+* Lucia Darrow
+* Shannon Lo
+* Morgana Xu
+* Elliot YKF
+* Swapna Menon
+
+<br/>
+
+<center><font size="6">**Thank you RLadies and Dialpad for hosting us!**</font></center>
