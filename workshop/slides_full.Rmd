@@ -35,6 +35,8 @@ __Bioinformatics:__ the development and use of computational methods in genetics
 
 __End product__: A visualization tool of trends in Bioinformatics, which can help prospective graduate students choose an institution or area of research.
 
+<center><font size="3">Source: http://tiny.cc/hs19-readme</font></center>
+
 ## Trends in Bioinformatics
 
 #### __Workflow__

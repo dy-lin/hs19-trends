@@ -16,7 +16,7 @@ library(knitr)
 ```
 ## Slides
 Fallen behind? Here are the slides:
-https://dy-lin.github.io/hs19-trends/workshop/slides_dlin.html
+https://dy-lin.github.io/hs19-trends/workshop/slides_full.html
 
 ## Regular Bar Graph
 Read in the csv file:
