@@ -1,5 +1,5 @@
 ---
-title: "RLadies Workshop"
+title: "Worksheet #2"
 author: "Emma Garlock"
 date: "11/15/2019"
 output: html_document
@@ -32,7 +32,7 @@ select <- dplyr::select
 
 ```{r readData,include=FALSE}
 
-data <- read_csv(here("data","affiliations_lat_long.csv"))
+data <- read_csv("https://github.com/dy-lin/hs19-trends/raw/master/data/affiliations_lat_long.csv")
 data <- data %>% 
        select(-X1) %>% distinct() %>%
         drop_na() %>%

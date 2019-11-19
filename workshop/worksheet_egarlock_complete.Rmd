@@ -1,5 +1,5 @@
 ---
-title: "worksheet_egarlock_complete"
+title: "Worksheet #2 Complete"
 author: "Emma Garlock"
 date: "11/17/2019"
 output: html_document
@@ -27,13 +27,14 @@ select <- dplyr::select
 ```
 
 ## Loading in the coordinates 
-*You do not actually have to run this, all of this is just here so you know how to set it up in the future. You can just skip down to ## Map Plotting 
-*To see where the coordinates come from see: https://github.com/dy-lin/hs19-trends/blob/master/R/LatLongScript.Rmd
+
+* You do not actually have to run this, all of this is just here so you know how to set it up in the future. You can just skip down to ## Map Plotting 
+* To see where the coordinates come from see: https://github.com/dy-lin/hs19-trends/blob/master/R/LatLongScript.Rmd
 
 
 ```{r readData,include=FALSE}
 
-data <- read_csv(here("data","affiliations_lat_long.csv"))
+data <- read_csv("https://github.com/dy-lin/hs19-trends/raw/master/data/affiliations_lat_long.csv")
 data <- data %>% 
        select(-X1) %>% distinct() %>%
         drop_na() %>%
